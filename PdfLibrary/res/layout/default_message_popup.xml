@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="@dimen/margin_10dp"
+    android:layout_marginRight="@dimen/margin_10dp"
+    android:layout_height="wrap_content"
+    android:alpha="0.80"
+    android:background="@drawable/popupbg"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_10dp" >
+
+    <RelativeLayout
+        android:id="@+id/defaultpopup_rltv_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/defaultpopup_txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:padding="@dimen/margin_5dp"
+            android:text="hfrhtriwehiu"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/font_25dp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/defaultpopup_txtMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/defaultpopup_rltv_header"
+        android:gravity="center"
+        android:minLines="1"
+        android:paddingBottom="@dimen/margin_10dp"
+        android:paddingLeft="@dimen/margin_5dp"
+        android:paddingRight="@dimen/margin_5dp"
+        android:paddingTop="@dimen/margin_10dp"
+        android:text="dfgdgfdgg srkkrhie"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_18dp" />
+
+    <LinearLayout
+        android:id="@+id/defaultpopup_rltv_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/defaultpopup_txtMessage"
+        android:layout_margin="@dimen/margin_5dp" >
+
+        <Button
+            android:id="@+id/defaultpopup_btnOk"
+            style="@style/common_button_font_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="0.80"
+            android:background="@drawable/sel_btn_okforpopup"
+            android:paddingBottom="@dimen/margin_10dp"
+            android:paddingLeft="@dimen/margin_15dp"
+            android:paddingRight="@dimen/margin_15dp"
+            android:paddingTop="@dimen/margin_10dp"
+            android:text="@string/default_popup_ok"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/font_20dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/defaultpopup_btnCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_5dp"
+            android:layout_weight="1"
+            android:alpha="0.80"
+            android:background="@drawable/sel_btn_okforpopup"
+            android:paddingBottom="@dimen/margin_10dp"
+            android:paddingLeft="@dimen/margin_15dp"
+            android:paddingRight="@dimen/margin_15dp"
+            android:paddingTop="@dimen/margin_10dp"
+            android:text="@string/default_popup_cancel"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/font_20dp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</RelativeLayout>
