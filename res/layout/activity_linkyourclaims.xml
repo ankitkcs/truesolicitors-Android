@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/linktoclaim_releativeIconView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10dp" >
+
+        <ImageView
+            android:id="@+id/linktoclaim_imageLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/android_true_big_logo" />
+
+        <TextView
+            android:id="@+id/linktoclaim_txtWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linktoclaim_imageLogo"
+            android:layout_centerHorizontal="true"
+            android:padding="@dimen/margin_20dp"
+            android:text="@string/linkreport_strwelcome"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/font_30dp" />
+
+        <TextView
+            android:id="@+id/linktoclaim_txtTrueSolicitors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linktoclaim_txtWelcome"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:padding="@dimen/margin_10dp"
+            android:text="@string/linkreport_strToGetApp"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/font_25dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linktoclaim_releativeIconView"
+        android:layout_marginTop="@dimen/margin_10dp" >
+
+        <RelativeLayout
+            android:id="@+id/linkreport_rltvLinkToClaim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10dp"
+            android:background="@drawable/shape_box_red" >
+
+            <ImageView
+                android:id="@+id/linkreport_imgLinkClaimicon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/margin_10dp"
+                android:src="@drawable/android_filled_link_icon" />
+
+            <ImageView
+                android:id="@+id/linkreport_imgLinkClaimarrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/margin_10dp"
+                android:src="@drawable/android_right_arrow_red_icon" />
+
+            <TextView
+                android:id="@+id/linkreport_txtLinkClaimarrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/linkreport_imgLinkClaimarrow"
+                android:layout_toRightOf="@+id/linkreport_imgLinkClaimicon"
+                android:gravity="center"
+                android:padding="@dimen/margin_10dp"
+                android:text="@string/linkreport_strLinktoclaim"
+                android:textColor="@color/color_drakred"
+                android:textSize="@dimen/font_18dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/linkreport_rltvReportClaim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linkreport_rltvLinkToClaim"
+            android:layout_margin="@dimen/margin_10dp"
+            android:background="@drawable/shape_box_red" >
+
+            <ImageView
+                android:id="@+id/linkreport_imgReportClaimicon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/margin_10dp"
+                android:src="@drawable/android_report_claim_icon" />
+
+            <ImageView
+                android:id="@+id/linkreport_imgReportClaimarrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/margin_10dp"
+                android:src="@drawable/android_right_arrow_red_icon" />
+
+            <TextView
+                android:id="@+id/linkreport_txtReportClaimarrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/linkreport_imgReportClaimarrow"
+                android:layout_toRightOf="@+id/linkreport_imgReportClaimicon"
+                android:gravity="center"
+                android:padding="@dimen/margin_10dp"
+                android:text="@string/linkreport_strReportClaim"
+                android:textColor="@color/color_drakred"
+                android:textSize="@dimen/font_18dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           
+            android:layout_alignParentBottom="true" >
+
+            <TextView
+                android:id="@+id/linkyourclaims_txtAboutus"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/linkyourclaims_txtShareApp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/linkyourclaims_txtFAQ"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

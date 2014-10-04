@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/welcome_releativeIconView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10dp" >
+
+        <ImageView
+            android:id="@+id/welcome_imageLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/android_true_big_logo" />
+
+        <TextView
+            android:id="@+id/welcome_txtWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/welcome_imageLogo"
+            android:layout_centerHorizontal="true"
+            android:text="@string/welcome_strWelcome"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/font_30dp" />
+
+        <TextView
+            android:id="@+id/welcome_txtTrueSolicitors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/welcome_txtWelcome"
+            android:layout_centerHorizontal="true"
+            android:text="@string/welcome_strTrueSolicitorsText"
+            android:textColor="@color/color_drakred"
+            android:textSize="@dimen/font_30dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcome_releativeIconView"
+        android:layout_margin="@dimen/margin_10dp" >
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/welcome_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/welcome_txtSendInstant"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/welcome_btnGetStarted"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/margin_10dp"
+            android:background="@color/color_red"
+            android:padding="@dimen/margin_20dp"
+            android:text="@string/welcome_getstarted"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/font_16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/welcome_txtSendInstant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/welcome_linearview_bullet"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/welcome_strSendInstant"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/font_20dp" />
+
+        <LinearLayout
+            android:id="@+id/welcome_linearview_bullet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/welcome_btnGetStarted"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/margin_5dp"
+            android:gravity="center"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

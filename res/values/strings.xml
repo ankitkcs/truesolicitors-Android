@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TrueClaims</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <!--Welcome screen  -->
+    <string name="welcome_getstarted">GET STARTED</string>
+    <string name="welcome_strWelcome">Welcome to the</string>
+    <string name="welcome_strTrueSolicitorsText">True Solicitors Claims App</string>
+    <string name="welcome_strSendInstant">Send instant messages to your\n TRUE Advisor</string>
+
+   <!--Link Report To Claim  -->
+    <string name="linkreport_strwelcome">Welcome to TRUE</string>
+    <string name="linkreport_strToGetApp">To get the most from this app\nplease <font bgcolor="#A9535A"><b>link your claim</b></font>below</string>
+ <string name="linkreport_strLinktoclaim">LINK TO MY CLAIM</string>
+ <string name="linkreport_strReportClaim">REPORT A NEW CLAIM</string>
+ 
+ 
+</resources>
