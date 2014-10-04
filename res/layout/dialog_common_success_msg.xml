@@ -1,8 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
     android:orientation="vertical" >
-    
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/margin_15dp"
+        android:background="@drawable/shape_rectangle_round_white"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/dialogsuccess_linear1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/dialogsuccess_txtHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:paddingTop="@dimen/margin_20dp"
+                android:singleLine="true"
+                android:text="@string/dialogsuccess_strFolderHeader"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/font_20dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/dialogsuccess_imgIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="@dimen/margin_20dp"
+                android:layout_marginTop="@dimen/margin_20dp"
+                android:src="@drawable/folder_popup_icon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dialogsuccess_linear2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/dialogsuccess_txtDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/margin_20dp"
+                android:layout_marginTop="@dimen/margin_20dp"
+                android:gravity="center"
+                android:text="@string/dialogsuccess_strFolderDesc"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/font_18dp" />
+
+            <Button
+                android:id="@+id/dialogsuccess_btnOk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_rectangle_round_green"
+                android:padding="@dimen/margin_20dp"
+                android:text="@string/common_strOk"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/font_16dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

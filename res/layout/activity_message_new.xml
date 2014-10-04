@@ -1,8 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/android_background"
     android:orientation="vertical" >
-    
 
-</LinearLayout>
+    <include
+        android:id="@+id/include1"
+        layout="@layout/common_header" />
+
+    <RelativeLayout
+        android:id="@+id/newmessage_linearContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/include1"
+        android:layout_margin="@dimen/margin_15dp"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/newmessage_edtToNumber"
+            style="@style/EditTextTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:ellipsize="end"
+            android:visibility="invisible"
+            android:ems="10"
+            android:singleLine="true" 
+            android:textColor="@color/color_drakred"
+            android:textSize="@dimen/font_18dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/newmessage_edtBodyPart"
+            style="@style/EditTextThemeWhite"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/newmessage_edtToNumber"
+            android:ems="10"
+            android:paddingLeft="@dimen/margin_5dp"
+            android:paddingRight="@dimen/margin_5dp"
+            android:gravity="top|left"
+            android:textColor="@color/color_black"
+            android:inputType="textMultiLine"
+            android:textSize="@dimen/font_18dp" >
+
+            <requestFocus />
+        </EditText>
+    </RelativeLayout>
+
+</RelativeLayout>

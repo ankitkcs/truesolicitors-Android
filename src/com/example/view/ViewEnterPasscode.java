@@ -52,7 +52,6 @@ public class ViewEnterPasscode extends Activity implements OnClickListener {
 	private ImageView view3;
 	private ImageView view4;
 	private String savePassword;
-	public static int XtimePassword = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -90,26 +89,18 @@ public class ViewEnterPasscode extends Activity implements OnClickListener {
 					setResult(RESULT_OK, intent);
 					finish();
 				} else {
-					XtimePassword++;
-					if (XtimePassword < 3) {
-						view1.setBackgroundResource(R.drawable.passcode_no_fill);
-						view2.setBackgroundResource(R.drawable.passcode_no_fill);
-						view3.setBackgroundResource(R.drawable.passcode_no_fill);
-						view4.setBackgroundResource(R.drawable.passcode_no_fill);
+					view1.setBackgroundResource(R.drawable.passcode_no_fill);
+					view2.setBackgroundResource(R.drawable.passcode_no_fill);
+					view3.setBackgroundResource(R.drawable.passcode_no_fill);
+					view4.setBackgroundResource(R.drawable.passcode_no_fill);
 
-						showPopupValidation(
-								ViewEnterPasscode.this,
-								getResources().getString(
-										R.string.dialog_strValidPassword),
-								false);
+					showPopupValidation(ViewEnterPasscode.this, getResources()
+							.getString(R.string.dialog_strValidPassword), false);
 
-					} else {
-						XtimePassword = 0;
-						Intent intent = new Intent();
-						intent.putExtra("tab", "FOLDERTAB");
-						setResult(RESULT_CANCELED, intent);
-						finish();
-					}
+					Intent intent = new Intent();
+					intent.putExtra("tab", "FOLDERTAB");
+					setResult(RESULT_CANCELED, intent);
+					finish();
 				}
 
 			}

@@ -1,9 +1,17 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
-
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:compat="http://schemas.android.com/apk/res-auto" >
+ <!--
+   <item
+        android:id="@+id/menuitem_message"
+        android:icon="@drawable/android_new_message_icon"
+        compat:showAsAction="ifRoom">
+    </item>
+     <item
+        android:id="@+id/menuitem_search"
+        android:actionViewClass="android.support.v7.widget.SearchView"
+        android:icon="@drawable/android_search_icon"
+        compat:showAsAction="ifRoom">
+    </item>
+ -->
 </menu>
