@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/shape_box_red" android:state_pressed="true" android:textColor="@color/color_white"/>
+    <item android:drawable="@drawable/shape_box_red" android:textColor="@color/color_red" />
+
+</selector>
