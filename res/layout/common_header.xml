@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="right"
+    android:background="@color/color_white"
+    android:gravity="right"
+    android:orientation="vertical"
+    android:paddingRight="@dimen/margin_5dp" >
+
+    <ImageView
+        android:id="@+id/commonview_imgback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_action_android_back_arrow_icon" />
+
+    <TextView
+        android:id="@+id/commonview_txtHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/margin_5dp"
+        android:layout_marginRight="@dimen/margin_5dp"
+        android:layout_toLeftOf="@+id/commonview_rltvmsgLink"
+        android:layout_toRightOf="@+id/commonview_imgback"
+        android:ellipsize="end"
+        android:gravity="center|left"
+        android:singleLine="true"
+        android:text="@string/linkyourclaim_header"
+        android:textColor="@color/color_black"
+        android:textSize="@dimen/font_18dp" />
+
+    <FrameLayout
+        android:id="@+id/commonview_rltvhandle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="right"
+        >
+
+       
+
+        <Button
+            android:id="@+id/commonview_btnSubmitLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/color_white"
+            android:drawableLeft="@drawable/ic_action_andorid_tick_icon"
+            android:gravity="center"
+            android:text="@string/linkyourclaim_link"
+            android:textColor="@color/color_drakred"
+            android:textSize="@dimen/font_16dp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/commonview_imgComposeMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_android_new_message_icon"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/commonview_rltvmsgLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/margin_5dp"
+        android:layout_toLeftOf="@+id/commonview_rltvhandle"
+        android:gravity="right"
+        android:padding="@dimen/margin_5dp" >
+
+        <ImageView
+            android:id="@+id/commonview_imgComposeSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            
+            android:src="@drawable/ic_action_android_search_icon"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/commonview_imgComposeShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_action_android_share_icon"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/commonview_btnSearchView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/commonview_rltvmsgLink"
+        android:layout_toRightOf="@+id/commonview_imgback"
+        android:ems="10"
+        android:singleLine="true"
+        android:visibility="gone" >
+
+        <requestFocus />
+    </EditText>
+
+</RelativeLayout>
