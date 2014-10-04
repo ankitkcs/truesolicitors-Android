@@ -1,28 +1,42 @@
 package com.example.view;
 
-import com.example.trueclaims.R;
+import java.lang.reflect.Field;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+
+import com.example.fragment.BaseContainerFragment;
+import com.example.trueclaims.R;
 
 /**
  * 
  * @author sanket
  * 
  */
-public class ViewMessageDetail extends Activity implements OnClickListener {
+public class ViewMessageDetail extends BaseContainerFragment implements
+		OnClickListener {
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_message_detail);
-		init();
+
+		View view = inflater.inflate(R.layout.activity_message_detail,
+				container, false);
+
+		return view;
 	}
 
-	private void init() {
-
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		// super.onActivityResult(requestCode, resultCode, data);
+		// Log.e("", "OnActivityResult Begin");
 	}
 
 	@Override
@@ -30,4 +44,6 @@ public class ViewMessageDetail extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 
 	}
+//
+//	
 }
