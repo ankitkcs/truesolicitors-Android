@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TrueClaims</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <!-- Menu Strings -->
+    <string name="menu_search">Search</string>
+    <string name="menu_add">Add</string>
+    <string name="menu_quit">Quit</string>
+    <string name="menu_feedback">Feedback</string>
+    <string name="menu_about">About</string>
+    <string name="menu_share">Share</string>
+    <!-- Common String -->
+    <string name="common_strOk">Ok</string>
+    <string name="common_strCancel">Cancel</string>
+    <string name="common_ok">Ok</string>
+    <string name="validation_internetoffline">Internet appears to be offline. Please check your internet connection.</string>
+    <!-- Welcome screen -->
+    <string name="welcome_getstarted">GET STARTED</string>
+    <string name="welcome_strWelcome">Welcome to the</string>
+    <string name="welcome_strTrueSolicitorsText">TRUE Solicitors Claims App</string>
+    <string name="welcome_strSendInstant">Send instant messages to your\n TRUE Advisor.</string>
+
+    <!-- HomeScreen Screen -->
+    <string name="homescreen_strwelcome">Welcome to TRUE.</string>
+    <string name="homescreen_strToGetApp">To get the most from this app&lt;br \\&gt;please &lt;font color=\'#A9535A\'&gt;&lt;b&gt;link your claim&lt;/b&gt;&lt;/font&gt; below.</string>
+    <string name="homescreen_strLinktoclaim">LINK TO MY CLAIM</string>
+    <string name="homescreen_strReportClaim">REPORT A NEW CLAIM</string>
+    <string name="homescreen_strAboutus">About Us</string>
+    <string name="homescreen_strShareThisApp">Share this App</string>
+    <string name="homescreen_strFAQ">FAQ\'s</string>
+    <string name="homescreen_strClaimNumber">YOUR CLAIM 3400632</string>
+
+    <!-- Link Your Claims -->
+    <string name="linkyourclaim_header">Link your claims</string>
+    <string name="linkyourclaim_strAccessClaimDesc">In order to access your claim\nplease enter your:</string>
+    <string name="linkyourclaim_hintclaimnumber">Claim number e.g. 123400</string>
+    <string name="linkyourclaim_hintclaimdob">Date of Birth e.g. 29-07-76</string>
+    <string name="linkyourclaim_link">Link</string>
+    <string name="linkyourclaim_claimexists">This claim number is already exists.</string>
+    <!-- Dialog Success Content MyFolder ,Message -->
+    <!-- Message -->
+    <string name="dialogsuccess_strMessageHeader">Welcome to, </string>
+    <string name="message_strNewMessage">NEW</string>
+    <string name="message_strFirstMessage">You TRUE Advisor is in the process of starting your claim.\n\nIn the meantime, thank you for linking your Claim to the\nTRUE app. We look forward to helping your settle your claim in the fastest and easiest way possible.\n\nThis app will help us achieve that.\nYou will be notified as soon as an update is available to you.</string>
+    <string name="message_validation_newmessagesuccess">Your message send successfully.</string>
+    <!-- MyFolder -->
+    <string name="myfolder_strMyFolderHeader">My Folder</string>
+    <string name="dialogsuccess_strFolderHeader">Welcome to My Folder</string>
+    <string name="dialogsuccess_strFolderDesc">This is where you can store,\n view and respond to the\ndocuments we send you.</string>
+    <string name="myfolder_strEmptyFolder">Your Folder is currently empty.</string>
+    <string name="myfolder_strNotifyDoc">we will notify you when a new\ndocument has been sent to you for\nyou to review.</string>
+    <string name="myfolder_strtempDocText">Moday 11th April\nDear Mr Harris,\n\nLorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.\nNam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes </string>
+    <string name="myfolder_strNext">NEXT</string>
+    <string name="validation_docnotfound">Document not found</string>
+    <!-- Passcode Screen -->
+    <string name="passcode_header">Create Passcode</string>
+    <string name="passcode_strForSecurity">For Your Security</string>
+    <string name="passcode_strPasscodeDesc">Please create 4 digit passcode\nto access Your Folder.</string>
+    <string name="passcode_strRememberMe">REMEMBER ME</string>
+    <string name="passcode_strNeedtoenter">You will need to enter this each time</string>
+    <string name="passcode_strCreatePasscode">Create passcode</string>
+    <string name="dialog_strPasscodeSaved">Passcode Saved!</string>
+    <string name="dialog_strPasscodeDesc">Please make sure you\nremember your 4 digit\n passcode</string>
+    <string name="dialog_strValidPassword">Enter valid password.</string>
+    <string name="passcode_strSave">SAVE</string>
+    <string name="passcode_strSubmit">SUBMIT</string>
+    <string name="passcode_forgotpwd">Forgotten passcode?</string>
+    <!-- Dialog Confimration -->
+    <string name="dialog_confirmRead_header">Confirm Document</string>
+    <string name="dialog_confirmRead_confirmread">Confirm Read</string>
+    <string name="dialog_confirmRead_readLater">Read again later</string>
+    <string name="dialog_confirmRead_strConfirm">Confirm</string>
+    <string name="dialog_confirmRead_strCancel">Cancel</string>
+    <!-- Agree Document -->
+    <string name="agreefile_strDesc">Please confirm if you agree with\nthe recommendation we have\nmade in this document?</string>
+    <string name="agreefile_strIAgree">I Agree</string>
+    <string name="agreefile_strIDoNoAgree">I Do Not Agree</string>
+    <string name="agreefile_strIncludeMsg">Include a message to TRUE?</string>
+    <string name="validation_agreedissagree">Please select action for Agree or Disagree.</string>
+    <!-- New Message -->
+    <string name="newMessage_strheader">New message to TRUE</string>
+    <string name="newMessage_strSend">SEND</string>
+    <string name="newMessage_strTo">TO: </string>
+    <!-- About us -->
+    <string name="aboutus_strAboutus">About US</string>
+    <!-- FaQ's -->
+    <string name="faq_strFaq">FAQ\'s</string>
+    <!-- More Header -->
+    <string name="more_strHeader">More</string>
+    <!-- Faq List Question and answer list -->
+    <string-array name="faq_questionlist">
+        <item>Can I make a claim? </item>
+        <item>How long do I have to make a claim?</item>
+        <item>What can I claim for?</item>
+        <item>How much compensation will I receive?</item>
+        <item>How much will it cost me to make a claim?</item>
+        <item>What do I have to pay if I lose?</item>
+        <item>What do I have to pay if I’m successful?</item>
+        <item>How long will my claim take to settle?</item>
+        <item>What is  the  process of claiming/what happens next? </item>
+        <item>Do I have to attend your office? </item>
+        <item>Will I have to attend for a medical examination?</item>
+        <item>How far will I have to travel to see a medical expert?</item>
+        <item>What happens after the medical examination?</item>
+        <item>Will I have to pay for treatment arranged by True?</item>
+        <item>What happens after I accept an offer?</item>
+        <item>Can I still bring a claim if the accident was partly my fault?</item>
+        <item>Will I still get compensation if the other party is not insured?</item>
+        <item>Will I get compensation if I am the victim of a hit and run accident?</item>
+        <item>Will I lose my job if I make a claim against my employer?</item>
+        <item>Can a child make a claim?</item>
+        <item>What if I receive an offer directly from the other side?</item>
+        <item>Will I have to go to court?</item>
+        <item>What type of personal injury claims can we help you with?</item>
+        <item>Why TRUE Solicitors?</item>
+    </string-array>
+    <string-array name="faq_answerlist" formatted="false">
+        <item>If you\'ve been injured in an accident that wasn\'t your fault, then it is likely you will able to claim compensation. If you are not sure whether you can make a claim, simply give us a call and we will tell you whether you have a winnable claim.</item>
+        <item>Normally you have 3 years from the date of your accident to start court proceedings. This rule does not apply to children as the 3 years does not start until their 18<sup>th</sup> birthday.</item>
+        <item>In addition to personal injury compensation, you can also claim for any losses caused by the accident. This might include damage to your vehicle, the cost of hiring an alternative vehicle, lost earnings, medical treatment costs, travel expenses, damage to clothing or personal belongings and even the cost of any care provided to you by your family and friends.</item>
+        <item>The amount of compensation you are awarded will depend on the seriousness of your injuries and the extent of your other losses and out-of-pocket expenses. It is therefore impossible for any solicitor to predict the amount you will receive at the start of your claim. </item>
+        <item>We will deal with your claim on a \'no win, no fee\' basis, which means you pay nothing if your claim is not successful. This arrangement takes the risk out of making a personal injury claim and gives you peace of mind. The official name for this type of arrangement is a Conditional Fee Agreement or CFA.</item>
+        <item>You do not have pay us anything if you lose except in exceptional circumstances. For example, if you fail to cooperate, make a dishonest claim, or reject our advice. </item>
+        <item>Before April 2013, the losing party, in addition to paying compensation, was also legally required to pay the claimant\'s full legal costs. Unfortunately the government believed this system was unfair to insurance companies and so it introduced a system where the claimant pays the success fee and the legal expenses insurance premium from the compensation they are awarded.&lt;br/&gt;&lt;br/&gt;The success fee is limited to a maximum of 25% of your compensation award.</item>
+        <item>This depends on many factors, such as the complexity of your claim, whether your claim is disputed, the seriousness of your injuries, and the attitude of the defendant’s insurance company. If your case is straightforward then your claim could conclude within a few months.</item>
+        <item>We take your instructions on all of the details of the accident. Once we have all the details we need , we notify the other party’s insurers that we will be making a claim. They will advise if it is there intention to admit or deny liability.  At the same time we will gather evidence in support of your claim. We will arrange for you to have a medical examination to determine your injuries. We will also write to witnesses and obtain documents relating to the case. If the other party admits liability, we gather sufficient evidence to value your case and then obtain the best settlement we can for you. If the other party denies liability, then we will advise you on your prospects for success. </item>
+        <item>No. You are welcome to visit us at our offices in Newcastle, Leeds, Ipswich and Birmingham, but we are able to deal with your claim just as easily over the telephone, by email and by post.</item>
+        <item>A claim for personal injury compensation must be supported by a medical report prepared by a medical expert. </item>
+        <item>The medical agencies we use to arrange medical examinations have an extensive nationwide panel of medical experts and so in most cases the medical examination will take place close to where you live.</item>
+        <item>The medical expert will send us his report, this may take a few weeks. We will then send you the medical report for you to check and approve. If the medical report is fine we will value your case or if the expert has suggested treatment, make those arrangements. If the medical report is not accurate or you have other concerns about the report, you need to tell us.</item>
+        <item>The cost of treatment will form part of your claim and will be claimed from the losing side in addition to your personal injury compensation.</item>
+        <item>Once we communicate your acceptance to the other party, your case is settled and we will not be able to reopen it. It is therefore important that you check that we have included all of your losses, and that you are happy with the valuation of your injury.</item>
+        <item>Yes. You can recover compensation for the part of the accident that was not your fault. For example, if you were found to be 25% to blame, then you would recover compensation to cover 75% of your losses. </item>
+        <item>Yes. An organisation called the MIB (Motor Insurers Bureau) pays compensation to road accident victims where the other driver is not insured.</item>
+        <item>Provided you can show that the accident happened and was the fault of the hit and run driver, then the MIB (Motor Insurers Bureau) will pay you compensation.</item>
+        <item>It would be against the law for your employer to terminate your employment because you were injured at work.  In any event your employer will be insured against the risk of one of its employees becoming injured and so any compensation you are awarded will be paid by an insurance company and not your employer. </item>
+        <item>Yes a child can claim. However their cases are dealt with differently. They will need a litigation friend (usually a parent) and their compensation is held in an account until they are 18</item>
+        <item>An early offer made without a medical report or independent legal advice should be treated with cautions</item>
+        <item>The vast majority of personal injury claims settle before a final hearing at court. However, if there is an argument about the facts of your accident or the value of your claim that cannot be resolved, then you may need to attend a court hearing. If this happens, your  True Advisor will be right by your side.</item>
+        <item>TRUE Solicitors are specialists in all types of personal injury work. This includes:- &lt;br/&gt;&lt;br/&gt;&#160;&#160;&#160;Road Traffic Accidents&lt;br/&gt;&#160;&#160;&#160;Accidents at Work&lt;br/&gt;&#160;&#160;&#160;Fatal Accidents&lt;br/&gt;&#160;&#160;&#160;Medical Negligence&lt;br/&gt;&#160;&#160;&#160;Industrial Disease </item>
+        <item>Because we are experienced in handling all types of personal injury claims.&lt;br/&gt;&lt;br/&gt;Because we will provide you with a professional, objective review of your accident claim&lt;br/&gt;&lt;br/&gt;Because we will guide you through every stage of the compensation process&lt;br/&gt;&lt;br/&gt;Because TRUE Solicitors win 9 out of 10 cases</item>
+    </string-array>
+    <!-- More option -->
+    <string name="more_abouttrue">About TRUE</string>
+    <string name="more_abouttrue_desc">We began life with just two partners and a secretary wanting to actively attract claimants motivated by the desire for personal vindication as well as financial compensation.&lt;br/&gt;&lt;br/&gt;We\'re now a 200 strong team with four offices - Newcastle, Leeds, Ipswich and Birmingham – each staffed by highly trained people who never falter from our fundamental principle...&lt;br/&gt;&lt;br/&gt;&lt;b&gt;TRUE Solicitors LLP – we stand for genuine compensation, never unjust CONpensation.&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Our teams of professional, approachable and highly dependable experts have supported millions of clients who understand the true motivation behind compensation claims – and it\'s never been to get undeserved financial reward. Not with us.&lt;br/&gt;&lt;br/&gt;&#160;&#160;When injured parties come to us, they often have doubts about the certainty of claiming. TRUE Solicitors LLP gives honest advice and sets achievable goals; we never mislead, never inflate the figures and never knowingly pursue a claim that isn\'t justified –&lt;br/&gt;this is how we maintain our impressive success rate.David Hamilton. Founding Partner</string>
+    <string name="more_whytrue">Why TRUE?</string>
+    <string name="more_whytrue_desc">&lt;b&gt;Because TRUE Solicitors LLP has respect for you.&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Some solicitors may \'give a case a go\' even if the chances of winning are slim to none; but we don\'t put people through the sometimes very lengthy process if we don\'t genuinely think they can be rewarded at the end of it.We are totally dedicated to every single case we do put our name to – from Slips, Trips and Falls through to Industrial Diseases, we stand by our clients from the second they call.&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Because TRUE Solicitors LLP has time for you.&lt;/b&gt;&lt;br/&gt;We stick to manageable caseloads which results in some key benefits: it means we keep in touch, allowing you to always feel in control of your own case - it means we\'re only ever a phone call away if you\'re worried about anything – it means your Case Manager knows your name, and you know theirs.&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Because if you start right – you\'ll end right.&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Start right...&lt;/b&gt; Before we do anything, we listen and learn exactly what brings you to our door, enabling us to provide tailored advice catering to your specific needs.&lt;br/&gt;&lt;b&gt;End right...&lt;/b&gt;We fight fast and fair to get you exactly the settlement you deserve – not a penny more in fact, but certainly not a penny less.&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Because TRUE Solicitors LLP win more than 9 out of 10 cases – nobody wins more.&lt;/b&gt;</string>
+    <string name="more_typeofinjuries">Type of Injuries</string>
+    <string name="more_contact">Contact</string>
+    <string name="more_contact_callTrue">Call TRUE</string>
+    <string name="more_contact_newMessage">New Message</string>
+    <string name="more_contactdetail_contactTrue">Contact TRUE</string>
+    <string name="more_contact_desc1">Please feel free to contact TRUE Solicitors LLP in whatever way is best for you.\nAlernatively you can contact you nearest office directly:&lt;br /&gt;&lt;b&gt;Newcastle upon Tyne Office&lt;/b&gt;Percy House, Percy Street, Newcastle upon Tyne, NE1 4PW &lt;br /&gt;Tel(Reception):0191 2321123 |Fax: 0191 2211689 | DX 71510</string>
+    <string name="more_contact_desc">&lt;b&gt;Please feel free to contact TRUE Solicitors LLP in whatever way is best for you.&lt;/b&gt;</string>
+    <string name="more_dummytext">We began life with just two partners and a secretary wanting to actively attract claimants motivated by the desire for personal vindication as well as finacial compensation.</string>
+    <string name="validation_agree_message">Recommendation status updated successfull.</string>
+    <!-- Common String -->
+    <string name="common_done">Done</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="validation_password">Enter the password.</string>
+
+</resources>

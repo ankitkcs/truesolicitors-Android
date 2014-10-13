@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_10dp"
+  >
+
+    <RelativeLayout
+        android:id="@+id/row_message_rltvheader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_10dp"
+        android:orientation="horizontal" >
+
+      
+
+
+            <ImageView
+                android:id="@+id/row_message_imgIcon"
+                android:layout_width="wrap_content"
+               android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_height="wrap_content"
+                android:src="@drawable/true_logo_messages" />
+      
+
+        <TextView
+            android:id="@+id/row_message_txtNew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/color_blue"
+            android:paddingBottom="@dimen/margin_5dp"
+            android:paddingLeft="@dimen/margin_15dp"
+            android:paddingRight="@dimen/margin_15dp"
+            android:paddingTop="@dimen/margin_5dp"
+            android:text="@string/message_strNewMessage"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/font_16dp"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/row_message_txtDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/row_message_txtNew"
+            android:layout_toRightOf="@+id/row_message_imgIcon"
+            android:gravity="center"
+            
+            android:text="Yesterday, 3.13 PM"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/font_14dp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/row_message_txtMessageDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/row_message_rltvheader"
+  
+        android:text="@string/message_strFirstMessage"
+        android:textColor="@color/color_black"
+        android:textSize="@dimen/font_18dp" />
+
+</RelativeLayout>
