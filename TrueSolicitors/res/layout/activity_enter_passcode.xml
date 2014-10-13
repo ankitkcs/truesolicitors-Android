@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/android_background"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/include1"
+        layout="@layout/common_header" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/pass1"
+        android:layout_marginTop="47dp"
+        android:background="@null"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:inputType="numberPassword"
+        android:maxLength="4"
+        android:singleLine="true"
+        android:textColor="@android:color/white" >
+
+        <requestFocus />
+    </EditText>
+
+    <LinearLayout
+        android:id="@+id/passcode_linearContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/include1"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/passcode_lineardescheader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5dp"
+            android:layout_marginBottom="@dimen/margin_15dp"
+            android:layout_marginTop="@dimen/margin_15dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/passcode_txtForSecurity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:gravity="center"
+                android:paddingBottom="@dimen/margin_15dp"
+                android:paddingTop="@dimen/margin_15dp"
+                android:text="@string/passcode_strForSecurity"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/font_16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/passcode_txtClaimText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/passcode_txtForSecurity"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/margin_5dp"
+                android:gravity="center"
+                android:text="@string/passcode_strPasscodeDesc"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/font_16dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/margin_10dp"
+            android:paddingTop="@dimen/margin_10dp" >
+
+            <ImageView
+                android:id="@+id/passcode_edtpassword1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/passcode_no_fill"
+                android:paddingBottom="@dimen/margin_5dp"
+                android:paddingTop="@dimen/margin_5dp" />
+
+            <ImageView
+                android:id="@+id/passcode_edtpassword2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_5dp"
+                android:background="@drawable/passcode_no_fill"
+                android:paddingBottom="@dimen/margin_5dp"
+                android:paddingTop="@dimen/margin_5dp" />
+
+            <ImageView
+                android:id="@+id/passcode_edtpassword3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_5dp"
+                android:background="@drawable/passcode_no_fill"
+                android:paddingBottom="@dimen/margin_5dp"
+                android:paddingTop="@dimen/margin_5dp" />
+
+            <ImageView
+                android:id="@+id/passcode_edtpassword4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_5dp"
+                android:background="@drawable/passcode_no_fill"
+                android:paddingBottom="@dimen/margin_5dp"
+                android:paddingTop="@dimen/margin_5dp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/passcode_rltvBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/passcode_linearremember"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_lightgrey"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/passcode_txtRememeberMe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/margin_10dp"
+                    android:text="@string/passcode_strRememberMe"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/font_16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/passcode_txtNeedToEnter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/passcode_txtRememeberMe"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/margin_10dp"
+                    android:text="@string/passcode_strNeedtoenter"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/font_16dp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/passcode_txtForgottenPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:gravity="center"
+                android:text="@string/passcode_forgotpwd"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/font_16dp"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

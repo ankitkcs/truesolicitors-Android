@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/margin_7dp"
+        android:layout_marginRight="@dimen/margin_7dp"
+        android:layout_marginTop="@dimen/margin_7dp"
+        android:background="@drawable/shape_rectangle_round_white" >
+
+        <RelativeLayout
+            android:id="@+id/dialog_spinner_rltvHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" >
+
+            <TextView
+                android:id="@+id/dialog_spinner_txtDone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:gravity="center"
+                android:hint="@string/common_cancel"
+                android:paddingBottom="@dimen/margin_10dp"
+                android:paddingLeft="@dimen/margin_25dp"
+                android:paddingRight="@dimen/margin_25dp"
+                android:paddingTop="@dimen/margin_10dp"
+                android:text="@string/common_done"
+                android:textColor="@color/color_dialog_spinner_headercolor"
+                android:textSize="@dimen/margin_18dp" />
+
+            <TextView
+                android:id="@+id/dialog_spinner_txtCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_toLeftOf="@+id/dialog_spinner_txtDone"
+                android:gravity="center"
+                android:paddingBottom="@dimen/margin_10dp"
+                android:paddingLeft="@dimen/margin_25dp"
+                android:paddingRight="@dimen/margin_25dp"
+                android:paddingTop="@dimen/margin_10dp"
+                android:text="@string/common_cancel"
+                android:textColor="@color/color_dialog_spinner_headercolor"
+                android:textSize="@dimen/margin_18dp" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/dialog_spinner_view1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_1dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/dialog_spinner_rltvHeader"
+            android:background="@color/color_lightgrey" />
+
+        <DatePicker
+            android:id="@+id/linkyourclaim_datepickerdob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dialog_spinner_view1"
+            android:layout_centerHorizontal="true"
+            android:padding="@dimen/margin_10dp" />
+    </RelativeLayout>
+
+</RelativeLayout>
