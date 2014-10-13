@@ -1,0 +1,117 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	deleted:    ../PdfLibrary/bin/AndroidManifest.xml
+#	deleted:    ../PdfLibrary/bin/R.txt
+#	deleted:    ../PdfLibrary/bin/choosepdfactivity.jar
+#	deleted:    ../PdfLibrary/bin/pdflibrary.jar
+#	deleted:    ../PdfLibrary/src/com/artifex/mupdfdemo/LinkInfo.java
+#	deleted:    ../PdfLibrary/src/com/artifex/mupdfdemo/LinkInfoExternal.java
+#	deleted:    ../PdfLibrary/src/com/artifex/mupdfdemo/LinkInfoInternal.java
+#	deleted:    ../PdfLibrary/src/com/artifex/mupdfdemo/LinkInfoRemote.java
+#	deleted:    ../PdfLibrary/src/com/artifex/mupdfdemo/LinkInfoVisitor.java
+#	deleted:    ../Pulltorefresh/bin/AndroidManifest.xml
+#	deleted:    ../Pulltorefresh/bin/R.txt
+#	deleted:    ../Pulltorefresh/bin/jarlist.cache
+#	deleted:    ../Pulltorefresh/bin/pulltorefresh.jar
+#	deleted:    bin/.gitignore
+#	deleted:    bin/AndroidManifest.xml
+#	deleted:    bin/R.txt
+#	deleted:    bin/jarlist.cache
+#	deleted:    ../android-support-v7-appcompat/bin/AndroidManifest.xml
+#	deleted:    ../android-support-v7-appcompat/bin/R.txt
+#	deleted:    ../android-support-v7-appcompat/bin/android-support-v7-appcompat.jar
+#	deleted:    ../android-support-v7-appcompat/bin/jarlist.cache
+#
+# Changes not staged for commit:
+#	modified:   ../PdfLibrary/project.properties
+#	modified:   ../PdfLibrary/res/values/styles.xml
+#	modified:   ../Pulltorefresh/project.properties
+#	modified:   ../Pulltorefresh/res/layout/pull_to_refresh_header.xml
+#	modified:   AndroidManifest.xml
+#	modified:   assets/trueclaim.sqlite
+#	modified:   project.properties
+#	deleted:    res/drawable/android_tick_doc_icon.png
+#	modified:   res/drawable/whitecircle.xml
+#	modified:   res/layout/activity_agree_file.xml
+#	modified:   res/layout/activity_enter_passcode.xml
+#	modified:   res/layout/activity_homescreen.xml
+#	modified:   res/layout/activity_moredetail_contact.xml
+#	modified:   res/layout/common_header.xml
+#	modified:   res/layout/row_homescreen_listclaims.xml
+#	modified:   res/layout/row_message_claims.xml
+#	modified:   res/layout/row_myfolder.xml
+#	modified:   res/values-hdpi/dimens.xml
+#	modified:   res/values-mdpi/dimens.xml
+#	modified:   res/values-xhdpi/dimens.xml
+#	modified:   res/values-xxhdpi/dimens.xml
+#	modified:   res/values/color.xml
+#	modified:   res/values/dimens.xml
+#	modified:   res/values/strings.xml
+#	modified:   res/values/styles.xml
+#	modified:   src/com/example/adapter/AdapterFaqList.java
+#	modified:   src/com/example/adapter/AdapterHomeScreenClaims.java
+#	modified:   src/com/example/adapter/AdapterMyFolderList.java
+#	modified:   src/com/example/adapter/AdapterWelcome.java
+#	modified:   src/com/example/database/DbHelper.java
+#	modified:   src/com/example/database/Tbl_Documents.java
+#	modified:   src/com/example/database/Tbl_Messages.java
+#	modified:   src/com/example/fragment/FragmentFAQ.java
+#	modified:   src/com/example/fragment/FragmentMessage.java
+#	modified:   src/com/example/fragment/FragmentMoreOption.java
+#	modified:   src/com/example/fragment/FragmentMyFolder.java
+#	modified:   src/com/example/fragment/ViewMainFragment.java
+#	modified:   src/com/example/model/Model_Documents.java
+#	modified:   src/com/example/trueclaims/TrueClaimsApp.java
+#	modified:   src/com/example/utils/CommonMethod.java
+#	modified:   src/com/example/utils/CommonVariable.java
+#	modified:   src/com/example/utils/WebCalls.java
+#	modified:   src/com/example/view/ViewAgreeFile.java
+#	modified:   src/com/example/view/ViewEnterPasscode.java
+#	modified:   src/com/example/view/ViewFAQ.java
+#	modified:   src/com/example/view/ViewFAQDetails.java
+#	modified:   src/com/example/view/ViewHomeScreen.java
+#	modified:   src/com/example/view/ViewLinkYourClaims.java
+#	modified:   src/com/example/view/ViewMessage.java
+#	deleted:    src/com/example/view/ViewMessageDetail.java
+#	modified:   src/com/example/view/ViewMore.java
+#	modified:   src/com/example/view/ViewMoreDescContact.java
+#	modified:   src/com/example/view/ViewMoreDetailDesc.java
+#	modified:   src/com/example/view/ViewMyFolder.java
+#	modified:   src/com/example/view/ViewMyFolderDetail.java
+#	modified:   ../android-support-v7-appcompat/bin/classes/android/support/v7/appcompat/R$styleable.class
+#	modified:   ../android-support-v7-appcompat/gen/android/support/v7/appcompat/R.java
+#	modified:   ../android-support-v7-appcompat/project.properties
+#
+# Untracked files:
+#	../PdfLibrary/bin/AndroidManifest.xml
+#	../PdfLibrary/bin/R.txt
+#	../PdfLibrary/bin/pdflibrary.jar
+#	../PdfLibrary/src/com/artifex/mupdfdemo/LinkInfo.java
+#	../PdfLibrary/src/com/artifex/mupdfdemo/LinkInfoExternal.java
+#	../PdfLibrary/src/com/artifex/mupdfdemo/LinkInfoInternal.java
+#	../PdfLibrary/src/com/artifex/mupdfdemo/LinkInfoRemote.java
+#	../PdfLibrary/src/com/artifex/mupdfdemo/LinkInfoVisitor.java
+#	../Pulltorefresh/bin/AndroidManifest.xml
+#	../Pulltorefresh/bin/R.txt
+#	../Pulltorefresh/bin/pulltorefresh.jar
+#	bin/
+#	gen/android/
+#	gen/com/artifex/
+#	gen/com/example/trueclaims/R.java
+#	gen/com/markupartist/
+#	res/drawable-hdpi/ic_phone_icon.png
+#	res/drawable-hdpi/innercloud.png
+#	res/drawable-mdpi/ic_phone_icon.png
+#	res/drawable-xhdpi/ic_phone_icon.png
+#	res/drawable-xxhdpi/ic_phone_icon.png
+#	res/drawable/shape_circle_withoutfill.xml
+#	../android-support-v7-appcompat/bin/AndroidManifest.xml
+#	../android-support-v7-appcompat/bin/R.txt
+#	../android-support-v7-appcompat/bin/android-support-v7-appcompat.jar
+#	../android-support-v7-appcompat/bin/jarlist.cache
+#
