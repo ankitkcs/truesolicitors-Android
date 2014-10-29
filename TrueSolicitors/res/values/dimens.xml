@@ -89,4 +89,5 @@
     <dimen name="home_welcome_buttonpadding">5dp</dimen>
    
       <dimen name="home_welcome_headerspacingbottom">5dp</dimen>
+      <dimen name="homescreen_logo_margin_top">30dp</dimen>
 </resources>

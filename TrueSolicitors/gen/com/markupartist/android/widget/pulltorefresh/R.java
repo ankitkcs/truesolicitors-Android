@@ -8,23 +8,23 @@ package com.markupartist.android.widget.pulltorefresh;
 
 public final class R {
 	public static final class drawable {
-		public static final int ic_pulltorefresh_arrow = 0x7f0200a9;
-		public static final int icon = 0x7f0200b0;
-		public static final int progress_red = 0x7f0200c8;
-		public static final int progress_xml = 0x7f0200ca;
-		public static final int pull_to_refresh_header_background = 0x7f0200cb;
+		public static final int ic_pulltorefresh_arrow = 0x7f0200a8;
+		public static final int icon = 0x7f0200b3;
+		public static final int progress_red = 0x7f0200cb;
+		public static final int progress_xml = 0x7f0200cd;
+		public static final int pull_to_refresh_header_background = 0x7f0200ce;
 	}
 	public static final class id {
-		public static final int progressBar1 = 0x7f0600f4;
-		public static final int pull_to_refresh_header = 0x7f0600f0;
-		public static final int pull_to_refresh_image = 0x7f0600f3;
-		public static final int pull_to_refresh_progress = 0x7f0600f2;
-		public static final int pull_to_refresh_text = 0x7f0600f5;
-		public static final int pull_to_refresh_updated_at = 0x7f0600f6;
-		public static final int relative = 0x7f0600f1;
+		public static final int progressBar1 = 0x7f0a00fa;
+		public static final int pull_to_refresh_header = 0x7f0a00f6;
+		public static final int pull_to_refresh_image = 0x7f0a00f9;
+		public static final int pull_to_refresh_progress = 0x7f0a00f8;
+		public static final int pull_to_refresh_text = 0x7f0a00fb;
+		public static final int pull_to_refresh_updated_at = 0x7f0a00fc;
+		public static final int relative = 0x7f0a00f7;
 	}
 	public static final class layout {
-		public static final int pull_to_refresh_header = 0x7f030034;
+		public static final int pull_to_refresh_header = 0x7f030033;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f0b000e;

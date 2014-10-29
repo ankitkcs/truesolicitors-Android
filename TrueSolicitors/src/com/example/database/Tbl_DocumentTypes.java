@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.model.Model_DocumentTypes;
 import com.example.trueclaims.TrueClaimsApp;
+import com.example.utils.CommonMethod;
 
 public class Tbl_DocumentTypes {
 
@@ -45,6 +46,31 @@ public class Tbl_DocumentTypes {
 		return arrModelList;
 	}
 
+	public static Model_DocumentTypes SelectTypeCodeModel(String type_code) {
+		SQLiteDatabase sqldb = TrueClaimsApp.sqLiteDatabase;
+		Cursor cursor = null;
+		String Query = "Select * from " + TableName + " where " + CODE + " = '"
+				+ type_code + "'";
+		cursor = sqldb.rawQuery(Query, null);
+		Model_DocumentTypes model = null;
+		if (cursor != null && cursor.moveToFirst()) {
+
+			model = new Model_DocumentTypes();
+			model.id = (cursor.getString(cursor.getColumnIndex(ID)));
+			model.code = (cursor.getString(cursor.getColumnIndex(CODE)));
+			model.name = (cursor.getString(cursor.getColumnIndex(NAME)));
+			model.response_template = (cursor.getString(cursor
+					.getColumnIndex(RESPONSE_TEMPLATE)));
+			model.action_prompt = (cursor.getString(cursor
+					.getColumnIndex(ACTION_PROMPT)));
+			model.record_created_at = (cursor.getString(cursor
+					.getColumnIndex(RECORD_CREATED_AT)));
+
+			cursor.close();
+		}// end if(cursor!=null)
+		return model;
+	}
+
 	public static void Insert(ArrayList<Model_DocumentTypes> arrListModel) {
 		SQLiteDatabase sqldb = TrueClaimsApp.sqLiteDatabase;
 		sqldb.beginTransaction();
@@ -55,7 +81,14 @@ public class Tbl_DocumentTypes {
 			values.put(RESPONSE_TEMPLATE, model.response_template);
 			values.put(ACTION_PROMPT, model.action_prompt);
 			values.put(RECORD_CREATED_AT, model.record_created_at);
-			sqldb.insert(TableName, null, values);
+
+			if (CommonMethod.isRecordExist(Tbl_DocumentTypes.TableName,
+					Tbl_DocumentTypes.CODE, model.code)) {
+				sqldb.update(TableName, values, Tbl_DocumentTypes.CODE + "= '"
+						+ model.code + "'", null);
+			} else {
+				sqldb.insert(TableName, null, values);
+			}
 		}
 		sqldb.setTransactionSuccessful();
 		sqldb.endTransaction();
@@ -66,4 +99,5 @@ public class Tbl_DocumentTypes {
 		int row = sqldb.delete(TableName, null, null);
 		return row;
 	}
+
 }

@@ -31,18 +31,21 @@
     <string name="homescreen_strAboutus">About Us</string>
     <string name="homescreen_strShareThisApp">Share this App</string>
     <string name="homescreen_strFAQ">FAQ\'s</string>
-    <string name="homescreen_strClaimNumber">YOUR CLAIM 3400632</string>
+    <string name="homescreen_strClaimNumber">YOUR CLAIM</string>
 
     <!-- Link Your Claims -->
     <string name="linkyourclaim_header">Link your claims</string>
     <string name="linkyourclaim_strAccessClaimDesc">In order to access your claim\nplease enter your:</string>
     <string name="linkyourclaim_hintclaimnumber">Claim number e.g. 123400</string>
-    <string name="linkyourclaim_hintclaimdob">Date of Birth e.g. 29-07-76</string>
+    <string name="linkyourclaim_hintclaimdob">Date of Birth e.g. 1976-07-22</string>
     <string name="linkyourclaim_link">Link</string>
     <string name="linkyourclaim_claimexists">This claim number is already exists.</string>
+    <string name="linkyourclaim_resetsecurity">Reset your security code</string>
+    <string name="linkyourclaim_resetsecuritydesc">Please enter your Claim Number\nand Date of Birth to reset:</string>
+    <string name="linkyourclaim_wrongdate">Enter valid date.</string>
     <!-- Dialog Success Content MyFolder ,Message -->
     <!-- Message -->
-    <string name="dialogsuccess_strMessageHeader">Welcome to, </string>
+    <string name="dialogsuccess_strMessageHeader">Welcome to,&#160;</string>
     <string name="message_strNewMessage">NEW</string>
     <string name="message_strFirstMessage">You TRUE Advisor is in the process of starting your claim.\n\nIn the meantime, thank you for linking your Claim to the\nTRUE app. We look forward to helping your settle your claim in the fastest and easiest way possible.\n\nThis app will help us achieve that.\nYou will be notified as soon as an update is available to you.</string>
     <string name="message_validation_newmessagesuccess">Your message send successfully.</string>
@@ -64,10 +67,12 @@
     <string name="passcode_strCreatePasscode">Create passcode</string>
     <string name="dialog_strPasscodeSaved">Passcode Saved!</string>
     <string name="dialog_strPasscodeDesc">Please make sure you\nremember your 4 digit\n passcode</string>
+    <string name="dialog_strpasswordenter_header">Please enter your personal\n4 digit passcode.</string>
     <string name="dialog_strValidPassword">Enter valid password.</string>
     <string name="passcode_strSave">SAVE</string>
     <string name="passcode_strSubmit">SUBMIT</string>
     <string name="passcode_forgotpwd">Forgotten passcode?</string>
+    <string name="passcode_enterpasscode">Enter passcode</string>
     <!-- Dialog Confimration -->
     <string name="dialog_confirmRead_header">Confirm Document</string>
     <string name="dialog_confirmRead_confirmread">Confirm Read</string>
@@ -80,6 +85,10 @@
     <string name="agreefile_strIDoNoAgree">I Do Not Agree</string>
     <string name="agreefile_strIncludeMsg">Include a message to TRUE?</string>
     <string name="validation_agreedissagree">Please select action for Agree or Disagree.</string>
+    <!-- Send Message to TRUE Claim -->
+    <string name="agreefile_strMessageSend">Submit</string>
+    <string name="agreefile_strSendMessageHint">Enter the message.</string>
+    <string name="agreefile_strMessageCancel">Cancel</string>
     <!-- New Message -->
     <string name="newMessage_strheader">New message to TRUE</string>
     <string name="newMessage_strSend">SEND</string>
@@ -145,21 +154,26 @@
     </string-array>
     <!-- More option -->
     <string name="more_abouttrue">About TRUE</string>
-    <string name="more_abouttrue_desc">We began life with just two partners and a secretary wanting to actively attract claimants motivated by the desire for personal vindication as well as financial compensation.&lt;br/&gt;&lt;br/&gt;We\'re now a 200 strong team with four offices - Newcastle, Leeds, Ipswich and Birmingham – each staffed by highly trained people who never falter from our fundamental principle...&lt;br/&gt;&lt;br/&gt;&lt;b&gt;TRUE Solicitors LLP – we stand for genuine compensation, never unjust CONpensation.&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Our teams of professional, approachable and highly dependable experts have supported millions of clients who understand the true motivation behind compensation claims – and it\'s never been to get undeserved financial reward. Not with us.&lt;br/&gt;&lt;br/&gt;&#160;&#160;When injured parties come to us, they often have doubts about the certainty of claiming. TRUE Solicitors LLP gives honest advice and sets achievable goals; we never mislead, never inflate the figures and never knowingly pursue a claim that isn\'t justified –&lt;br/&gt;this is how we maintain our impressive success rate.David Hamilton. Founding Partner</string>
+    <string name="more_abouttrue_desc">&lt;font color=\'#7e848a\'&gt;We began life with just two partners and a secretary wanting to actively attract claimants motivated by the desire for personal vindication as well as financial compensation.&lt;br/&gt;&lt;br/&gt;We\'re now a 200 strong team with four offices - Newcastle, Leeds, Ipswich and Birmingham – each staffed by highly trained people who never falter from our fundamental principle...&lt;br/&gt;&lt;br/&gt;TRUE Solicitors LLP – we stand for genuine compensation, never unjust CONpensation.&lt;br/&gt;&lt;br/&gt;Our teams of professional, approachable and highly dependable experts have supported millions of clients who understand the true motivation behind compensation claims – and it\'s never been to get undeserved financial reward. Not with us.&lt;br/&gt;&lt;br/&gt;&#160;&#160;When injured parties come to us, they often have doubts about the certainty of claiming. TRUE Solicitors LLP gives honest advice and sets achievable goals; we never mislead, never inflate the figures and never knowingly pursue a claim that isn\'t justified –&lt;br/&gt;this is how we maintain our impressive success rate.David Hamilton. Founding Partner&lt;/font&gt;</string>
     <string name="more_whytrue">Why TRUE?</string>
-    <string name="more_whytrue_desc">&lt;b&gt;Because TRUE Solicitors LLP has respect for you.&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Some solicitors may \'give a case a go\' even if the chances of winning are slim to none; but we don\'t put people through the sometimes very lengthy process if we don\'t genuinely think they can be rewarded at the end of it.We are totally dedicated to every single case we do put our name to – from Slips, Trips and Falls through to Industrial Diseases, we stand by our clients from the second they call.&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Because TRUE Solicitors LLP has time for you.&lt;/b&gt;&lt;br/&gt;We stick to manageable caseloads which results in some key benefits: it means we keep in touch, allowing you to always feel in control of your own case - it means we\'re only ever a phone call away if you\'re worried about anything – it means your Case Manager knows your name, and you know theirs.&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Because if you start right – you\'ll end right.&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Start right...&lt;/b&gt; Before we do anything, we listen and learn exactly what brings you to our door, enabling us to provide tailored advice catering to your specific needs.&lt;br/&gt;&lt;b&gt;End right...&lt;/b&gt;We fight fast and fair to get you exactly the settlement you deserve – not a penny more in fact, but certainly not a penny less.&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Because TRUE Solicitors LLP win more than 9 out of 10 cases – nobody wins more.&lt;/b&gt;</string>
+    <string name="more_whytrue_desc">&lt;b&gt;Because TRUE Solicitors LLP has respect for you.&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;&lt;font color=\'#7e848a\'&gt;Some solicitors may \'give a case a go\' even if the chances of winning are slim to none; but we don\'t put people through the sometimes very lengthy process if we don\'t genuinely think they can be rewarded at the end of it.We are totally dedicated to every single case we do put our name to – from Slips, Trips and Falls through to Industrial Diseases, we stand by our clients from the second they call.&lt;/font&gt;&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Because TRUE Solicitors LLP has time for you.&lt;/b&gt;&lt;br/&gt;&lt;font color=\'#7e848a\'&gt;We stick to manageable caseloads which results in some key benefits: it means we keep in touch, allowing you to always feel in control of your own case - it means we\'re only ever a phone call away if you\'re worried about anything – it means your Case Manager knows your name, and you know theirs.&lt;/font&gt;&lt;br /&gt;&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Because if you start right – you\'ll end right.&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Start right...&lt;/b&gt;&lt;font color=\'#7e848a\'&gt; Before we do anything, we listen and learn exactly what brings you to our door, enabling us to provide tailored advice catering to your specific needs.&lt;/font&gt;&lt;br/&gt;&lt;b&gt;End right...&lt;/b&gt;&lt;font color=\'\'&gt;We fight fast and fair to get you exactly the settlement you deserve – not a penny more in fact, but certainly not a penny less.&lt;/font&gt;&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Because TRUE Solicitors LLP win more than 9 out of 10 cases – nobody wins more.&lt;/b&gt;</string>
     <string name="more_typeofinjuries">Type of Injuries</string>
+    <string name="more_typeofinjuries_desc">&lt;font color=\'#7e848a\' face=\'roboto,light\'&gt;At TRUE Solicitors LLP we surround you with experts from the moment you call. This is our commitment to you and your case.&lt;/font&gt;&lt;br/&gt;&lt;br/&gt;&lt;font color=\'#2a2a2a\'&gt;Types of Injury:&lt;/font&gt;&lt;br/&gt;&lt;br/&gt;&lt;font color =\'#8f2c3c\'&gt;Back and Spinal&lt;br/&gt;&lt;br/&gt;Head and Brain&lt;br/&gt;&lt;br/&gt;Whiplash and Neck&lt;br/&gt;&lt;br/&gt;Burns and Scarring&lt;br/&gt;&lt;br/&gt;Broken Bone&lt;br/&gt;&lt;br/&gt;By-Proxy&lt;br/&gt;&lt;br/&gt;Animal Bites/Kicks&lt;br/&gt;&lt;br/&gt;&lt;/font&gt;&lt;font color =\'#080906\'&gt;&lt;b&gt;\"Our medical specialists are highly respected in their fields of expertise and are motivated by the same sense of justice as we are, and you are.&lt;br /&gt;Your service is excellent. Top class the whole way. Thank you for everything you\'ve done. There was no way I could have pursued this claim on my own... it\'s a mine field and not something you want to experience without the right expert by your side.\"&lt;/font&gt;&lt;br /&gt;&lt;br /&gt;&lt;font color=\'#3a2b26\' face=\'roboto,regular\' &gt;Mr John Bonney. Northants. Accident at Work&lt;br/&gt;&lt;br/&gt;If you\'d like to discuss your injury to find out whether you have a genuine case for compensation, simply leave your contact details and our Front Line Team promise to call you back within 2 working hours.&lt;/b&gt;&lt;/font&gt;</string>
     <string name="more_contact">Contact</string>
     <string name="more_contact_callTrue">Call TRUE</string>
     <string name="more_contact_newMessage">New Message</string>
     <string name="more_contactdetail_contactTrue">Contact TRUE</string>
-    <string name="more_contact_desc1">Please feel free to contact TRUE Solicitors LLP in whatever way is best for you.\nAlernatively you can contact you nearest office directly:&lt;br /&gt;&lt;b&gt;Newcastle upon Tyne Office&lt;/b&gt;Percy House, Percy Street, Newcastle upon Tyne, NE1 4PW &lt;br /&gt;Tel(Reception):0191 2321123 |Fax: 0191 2211689 | DX 71510</string>
-    <string name="more_contact_desc">&lt;b&gt;Please feel free to contact TRUE Solicitors LLP in whatever way is best for you.&lt;/b&gt;</string>
+    <string name="more_contact_desc">&lt;font face=\'roboto,regular\'&gt;&lt;b&gt;Please feel free to contact TRUE Solicitors LLP in whatever way is best for you.&lt;/b&gt;&lt;/font&gt;&lt;br/&gt;&lt;br/&gt;&lt;font face=\'roboto,light\'&gt;Alternatively you can contact your nearest office directly:&lt;br/&gt;&lt;br/&gt;&lt;b&gt;&lt;/font&gt;&lt;font face=\'roboto,regular\'&gt;Newcastle upon Tyne Office&lt;/b&gt;:&lt;br/&gt;&lt;/font&gt;&lt;font face=\'roboto,light\'&gt;Percy House, Percy Street, Newcastle upon Tyne, NE1 4PW&lt;br/&gt;Tel (Reception): 0191 2321123 | Fax: 0191 2211689 | DX 715140 Newcastle 19&lt;br/&gt;&lt;br/&gt;&lt;b&gt;&lt;/font&gt;&lt;font face=\'roboto,regular\'&gt;Leeds Office &lt;/b&gt;&lt;/font&gt;&lt;br/&gt;&lt;font face=\'roboto,regular\'&gt;2 Lisbon Square, Leeds, LS1 4LY&lt;/b&gt;&lt;br/&gt;Tel (Reception): 0113 3862600 | Fax: 0113 2429662 | DX 26425 Leeds Park Square&lt;br/&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;&lt;font face=\'roboto,regular\'&gt;Ipswich Office&lt;/b&gt;&lt;/font&gt;&lt;br/&gt;27 St. Helen\'s Street, Ipswich, IP4 1HH&lt;br/&gt;Tel (Reception): 01473 400857 | Fax: 01473 400357| DX 3272 Ipswich&lt;/font&gt;&lt;br/&gt;&lt;br/&gt;&lt;b&gt;&lt;font face=\'roboto,regular\'&gt;Birmingham Office&lt;/b&gt;&lt;/font&gt;&lt;br /&gt;&lt;font face=\'roboto,light\'&gt;Alpha 1, Canton Lane, Hams Hall, Birmingham, B46 1GA&lt;br/&gt;Tel (Reception): 01675 435200 | Fax: 01675 432712&lt;/font&gt;</string>
     <string name="more_dummytext">We began life with just two partners and a secretary wanting to actively attract claimants motivated by the desire for personal vindication as well as finacial compensation.</string>
     <string name="validation_agree_message">Recommendation status updated successfull.</string>
     <!-- Common String -->
     <string name="common_done">Done</string>
     <string name="common_cancel">Cancel</string>
     <string name="validation_password">Enter the password.</string>
-
+    <!-- Forgot Password -->
+    <string name="forgotpasscode_header">Forgotten passcode</string>
+    <!-- dialog passcode reset -->
+    <string name="dialog_passwordreset_header">Password Reset!</string>
+  <string name="dialog_passwordreset_desc">Please press continue with OK to re create your 4 digit passcode</string>
+  
 </resources>

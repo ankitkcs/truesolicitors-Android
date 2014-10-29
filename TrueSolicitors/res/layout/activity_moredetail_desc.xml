@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/color_white"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
@@ -13,8 +14,8 @@
             android:id="@+id/moredetail_txtDesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/margin_10dp"
-            
+            android:padding="@dimen/margin_15dp"
+            android:textSize="@dimen/font_13dp"
             android:text="@string/more_dummytext" />
     </ScrollView>
 

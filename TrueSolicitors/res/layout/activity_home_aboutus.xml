@@ -18,26 +18,19 @@
         android:layout_below="@+id/include1"
         android:orientation="vertical" >
 
-        <RelativeLayout
-            android:id="@+id/linearclaim_lineardescheader"
+        <ScrollView
+            android:id="@+id/homeabout_scdetail"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="@dimen/margin_10dp"
-            android:layout_weight="0.4"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
+                android:id="@+id/homeabout_txtDesc"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:textSize="@dimen/font_20dp"
-                android:textColor="@color/color_black"
-                android:layout_centerVertical="true"
-                android:text="@string/aboutus_strAboutus" />
-        </RelativeLayout>
+                android:padding="@dimen/margin_15dp"
+                android:text="@string/more_dummytext"
+                android:textSize="@dimen/font_18dp" />
+        </ScrollView>
     </LinearLayout>
 
 </RelativeLayout>

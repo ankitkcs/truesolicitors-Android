@@ -36,6 +36,7 @@ import com.example.adapter.AdapterMyFolderList;
 import com.example.database.Tbl_Documents;
 import com.example.fragment.BaseContainerFragment;
 import com.example.fragment.ViewMainFragment;
+import com.example.implement.ImplementPopupAction;
 import com.example.model.Model_Documents;
 import com.example.model.Model_WebResponse;
 import com.example.trueclaims.R;
@@ -45,13 +46,14 @@ import com.example.utils.KcsProgressDialog;
 import com.example.utils.WebCalls;
 
 /**
- * Opening Folder tab content 
- * if First time showing password one time after save calling document webservice
+ * Opening Folder tab content if First time showing password one time after save
+ * calling document webservice
+ * 
  * @author sanket
  * 
  */
 public class ViewMyFolder extends BaseContainerFragment implements
-		OnClickListener {
+		OnClickListener,ImplementPopupAction {
 
 	boolean isMyFolderDialogOpen = true;
 	private LinearLayout linearEmptyScreen;
@@ -71,6 +73,7 @@ public class ViewMyFolder extends BaseContainerFragment implements
 	final static int VIEWFOLDER_RESULT_CODE = 1110;
 	public final static String MYFOLDER_UPDATE = "MYFOLDER_UIUPDATE";
 	private View onCreateView;
+	private ImplementPopupAction implementPopupAction;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,8 +98,10 @@ public class ViewMyFolder extends BaseContainerFragment implements
 				Log.d("tag", "Call Fragmet MyFoldeR");
 				ViewMyFolderDetail viewMyFolderDetailFragment = new ViewMyFolderDetail();
 				Bundle bundle = new Bundle();
-				Model_Documents modelDocuments = listOfDocuments.get(position);
 				
+				Model_Documents modelDocuments = (Model_Documents) parent
+						.getItemAtPosition(position);
+
 				bundle.putString(CommonVariable.PUT_EXTRA_DOCUMENT_GUID,
 						modelDocuments.guid);
 				viewMyFolderDetailFragment.setArguments(bundle);
@@ -106,6 +111,7 @@ public class ViewMyFolder extends BaseContainerFragment implements
 		});
 		super.onActivityCreated(savedInstanceState);
 	}
+
 	@Override
 	public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
 		// TODO Auto-generated method stub
@@ -138,10 +144,8 @@ public class ViewMyFolder extends BaseContainerFragment implements
 						R.anim.activity_open_exit);
 			}
 		}
-		
 
 	}
-
 
 	private void init(View view) {
 		// TODO Auto-generated method stub
@@ -155,12 +159,12 @@ public class ViewMyFolder extends BaseContainerFragment implements
 		imgSearchView = ((ViewMainFragment) getActivity()).imgSearchView;
 		btnNextLink = ((ViewMainFragment) getActivity()).btnNextLink;
 		imgShare = ((ViewMainFragment) getActivity()).imgShare;
-
-//		imgComposeMsg.setVisibility(View.INVISIBLE);
-//		imgSearchView.setVisibility(View.INVISIBLE);
+		implementPopupAction=(ImplementPopupAction) this;
+		// imgComposeMsg.setVisibility(View.INVISIBLE);
+		// imgSearchView.setVisibility(View.INVISIBLE);
 		imgComposeMsg.setVisibility(View.GONE);
 		imgSearchView.setVisibility(View.GONE);
-		
+
 		imgShare.setVisibility(View.GONE);
 		btnNextLink.setVisibility(View.GONE);
 		edtSearchView.setVisibility(View.GONE);
@@ -175,8 +179,9 @@ public class ViewMyFolder extends BaseContainerFragment implements
 
 		listViewFolderFiles.setVisibility(View.GONE);
 		Log.d("tag", "OnResume Called");
+		reloadListviewData();
 		showDialogMyFolder(onCreateView);
-		
+
 	}
 
 	private void showDialogMyFolder(View view) {
@@ -190,11 +195,10 @@ public class ViewMyFolder extends BaseContainerFragment implements
 
 			String strMessageDetail = view.getResources().getString(
 					R.string.dialogsuccess_strFolderDesc);
-			Intent intent = new Intent(getActivity(), ViewEnterPasscode.class);
-			intent.putExtra(CommonVariable.PUT_EXTRA_CLAIM_NO, strClaimNumber);
-			showPopupSuccessDialog(getActivity(), strDialogHeader, dialogIcon,
+		
+			CommonMethod.showPopupSuccessDialog(getActivity(), strDialogHeader, dialogIcon,
 					strMessageDetail,
-					CommonVariable.PREFS_DIALOG_MYFOLDER_ISOPEN, intent);
+					 false,implementPopupAction);
 			listViewFolderFiles.setVisibility(View.GONE);
 			linearEmptyScreen.setVisibility(View.VISIBLE);
 		} else {
@@ -305,72 +309,6 @@ public class ViewMyFolder extends BaseContainerFragment implements
 			kcsDialog.dismiss();
 	}
 
-	/**
-	 * Temp Showing Success Dialog Use in MyFolder,Message,Passcode Time
-	 * 
-	 * @param activity
-	 * @param message
-	 * @param b
-	 * @param prefsDialogMyfolderIsopen
-	 * @return
-	 */
-	public Dialog showPopupSuccessDialog(final Activity activity, String title,
-			int icon, String message, final String sharedPrefKey,
-			final Intent intent) {
-
-		final Dialog dialog = new Dialog(activity,
-				android.R.style.Theme_NoTitleBar);
-		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// dialog.getWindow().setBackgroundDrawable(
-		// activity.getResources().getDrawable(
-		// R.drawable.shape_box_transparancy));
-		dialog.getWindow().setBackgroundDrawable(
-				new ColorDrawable(getResources().getColor(
-						R.color.color_popup_background)));
-		dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,
-				ViewGroup.LayoutParams.MATCH_PARENT);
-		dialog.getWindow().setGravity(Gravity.CENTER);
-		dialog.setCancelable(false);
-		dialog.setContentView(R.layout.dialog_common_success_msg);
-		dialog.setCanceledOnTouchOutside(false);
-		// WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
-		// lp.dimAmount=0.5f;
-		// dialog.getWindow().setAttributes(lp);
-		// dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
-		final TextView txtHeader = (TextView) dialog
-				.findViewById(R.id.dialogsuccess_txtHeader);
-		final ImageView imgIcon = (ImageView) dialog
-				.findViewById(R.id.dialogsuccess_imgIcon);
-		final TextView txtMessge = (TextView) dialog
-				.findViewById(R.id.dialogsuccess_txtDesc);
-		txtHeader.setText(title);
-		txtMessge.setText(message);
-		imgIcon.setImageResource(icon);
-		// txtMessage.setText(message);
-		final Button btnOk = (Button) dialog
-				.findViewById(R.id.dialogsuccess_btnOk);
-
-		btnOk.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				dialog.dismiss();
-				CommonMethod.setSharePrefrenceBoolean(activity, sharedPrefKey,
-						true);
-
-				if (intent != null) {
-
-					getParentFragment().startActivityForResult(intent,
-							VIEWFOLDER_RESULT_CODE);
-				}
-
-			}
-		});
-
-		dialog.show();
-		return dialog;
-	}
-
 	public void refreshListViewData() {
 		if (!CommonMethod.isInternetAvailable(getActivity())) {
 			CommonMethod.showPopupValidation(getActivity(), getResources()
@@ -391,5 +329,18 @@ public class ViewMyFolder extends BaseContainerFragment implements
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		Log.d("tag", "Call ViewMyFolderTab");
+	}
+
+	@Override
+	public void onOkClickHandler(Activity activity, Dialog dialog, Button btnOk) {
+		CommonMethod.setSharePrefrenceBoolean(activity, CommonVariable.PREFS_DIALOG_MYFOLDER_ISOPEN,
+				true);
+		Intent intent = new Intent(activity, ViewEnterPasscode.class);
+		intent.putExtra(CommonVariable.PUT_EXTRA_CLAIM_NO, strClaimNumber);
+		if (intent != null) {
+
+			getParentFragment().startActivityForResult(intent,
+					VIEWFOLDER_RESULT_CODE);
+		}
 	}
 }

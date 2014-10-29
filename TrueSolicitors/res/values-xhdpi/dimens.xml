@@ -88,5 +88,7 @@
     <!--Button Padding  -->
       <dimen name="home_welcome_headerspacingbottom">10dp</dimen>
     <dimen name="home_welcome_buttonpadding">20dp</dimen>
+    
+      <dimen name="homescreen_logo_margin_top">30dp</dimen>
    
 </resources>

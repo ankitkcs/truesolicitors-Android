@@ -17,21 +17,29 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:gravity="center"
+         
             android:paddingBottom="@dimen/margin_15dp"
-            android:paddingLeft="@dimen/margin_5dp"
+            android:paddingLeft="@dimen/margin_10dp"
             android:paddingRight="@dimen/margin_5dp"
             android:paddingTop="@dimen/margin_15dp"
             android:text="@string/passcode_strRememberMe"
             android:textColor="@color/color_black"
-            android:textSize="@dimen/font_18dp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/font_18dp" />
     </RelativeLayout>
+
+    <View
+        android:id="@+id/faqdetail_seprator1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_1dp"
+        android:layout_below="@+id/faqdetail_linearfaq"
+        android:background="@color/color_greyseprator"
+        android:orientation="vertical" />
 
     <ScrollView
         android:id="@+id/faqdetail_scnaswerdetail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:background="@color/color_white" >
 
         <TextView
             android:id="@+id/faqdetail_txtFaqAnswer"

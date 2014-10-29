@@ -11,7 +11,11 @@ import android.widget.TextView;
 
 import com.example.model.Model_LinkToClaim;
 import com.example.trueclaims.R;
-
+/**
+ * Fill Claim View in List
+ * @author Kcspl003
+ *
+ */
 public class AdapterHomeScreenClaims extends BaseAdapter {
 	private Context context;
 	private ArrayList<Model_LinkToClaim> listClaims;
@@ -46,9 +50,9 @@ public class AdapterHomeScreenClaims extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ClaimsHolder holder;
+		ViewHomeScreenHolder holder;
 		if (convertView == null) {
-			holder = new ClaimsHolder();
+			holder = new ViewHomeScreenHolder();
 			convertView = inflater.inflate(R.layout.row_homescreen_listclaims,
 					null);
 			holder.btnClaims = (TextView) convertView
@@ -56,7 +60,7 @@ public class AdapterHomeScreenClaims extends BaseAdapter {
 			convertView.setTag(holder);
 
 		} else {
-			holder = (ClaimsHolder) convertView.getTag();
+			holder = (ViewHomeScreenHolder) convertView.getTag();
 		}
 		Model_LinkToClaim model = listClaims.get(position);
 		
@@ -65,7 +69,7 @@ public class AdapterHomeScreenClaims extends BaseAdapter {
 		return convertView;
 	}
 
-	public class ClaimsHolder {
+	public class ViewHomeScreenHolder {
 		TextView btnClaims;
 	}
 }

@@ -30,13 +30,20 @@
 
         <requestFocus />
     </EditText>
-
+ <View
+        android:id="@+id/enterpasscode_seprator1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_1dp"
+        android:layout_below="@+id/include1"
+        android:background="@color/color_greyseprator"
+        android:orientation="vertical" />
     <LinearLayout
         android:id="@+id/passcode_linearContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/include1"
+       
+        android:layout_below="@+id/enterpasscode_seprator1"
         android:orientation="vertical" >
 
         <RelativeLayout
@@ -80,54 +87,45 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/margin_10dp"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/margin_10dp"
-            android:paddingTop="@dimen/margin_10dp" >
+            android:orientation="horizontal" >
 
             <ImageView
                 android:id="@+id/passcode_edtpassword1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/passcode_no_fill"
-                android:paddingBottom="@dimen/margin_5dp"
-                android:paddingTop="@dimen/margin_5dp" />
+                android:background="@drawable/passcode_no_fill" />
 
             <ImageView
                 android:id="@+id/passcode_edtpassword2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/margin_5dp"
-                android:background="@drawable/passcode_no_fill"
-                android:paddingBottom="@dimen/margin_5dp"
-                android:paddingTop="@dimen/margin_5dp" />
+                android:background="@drawable/passcode_no_fill" />
 
             <ImageView
                 android:id="@+id/passcode_edtpassword3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/margin_5dp"
-                android:background="@drawable/passcode_no_fill"
-                android:paddingBottom="@dimen/margin_5dp"
-                android:paddingTop="@dimen/margin_5dp" />
+                android:background="@drawable/passcode_no_fill" />
 
             <ImageView
                 android:id="@+id/passcode_edtpassword4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/margin_5dp"
-                android:background="@drawable/passcode_no_fill"
-                android:paddingBottom="@dimen/margin_5dp"
-                android:paddingTop="@dimen/margin_5dp" />
+                android:background="@drawable/passcode_no_fill" />
         </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/passcode_rltvBottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10dp"
             android:orientation="vertical" >
 
             <RelativeLayout
@@ -171,10 +169,13 @@
                 android:layout_marginTop="@dimen/margin_10dp"
                 android:gravity="center"
                 android:text="@string/passcode_forgotpwd"
+                android:padding="@dimen/margin_5dp"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/font_16dp"
                 android:visibility="gone" />
         </RelativeLayout>
     </LinearLayout>
+
+   
 
 </RelativeLayout>

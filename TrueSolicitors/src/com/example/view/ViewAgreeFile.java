@@ -23,16 +23,21 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.database.Tbl_DocumentTypes;
 import com.example.database.Tbl_Documents;
 import com.example.fragment.BaseContainerFragment;
 import com.example.fragment.ViewMainFragment;
+import com.example.implement.ImplementPopupAction;
+import com.example.model.Model_DocumentTypes;
 import com.example.model.Model_Documents;
 import com.example.model.Model_WebResponse;
 import com.example.trueclaims.R;
@@ -43,13 +48,14 @@ import com.example.utils.WebCalls;
 
 /**
  * 
- * This class using agree perticular document and updating webservice 
- * Action Type and action time.
+ * This class using agree perticular document and updating webservice Action
+ * Type and action time.
+ * 
  * @author sanket
  * 
  */
 public class ViewAgreeFile extends BaseContainerFragment implements
-		OnClickListener {
+		OnClickListener, ImplementPopupAction {
 	private EditText edtSearchView;
 	private TextView txtHeaderView;
 	private String strClaimNumber;
@@ -65,16 +71,20 @@ public class ViewAgreeFile extends BaseContainerFragment implements
 	public static boolean isBackHandle = false;
 	public ImageView imgBackView;
 	private Model_Documents modelSelectedDoc;
+	private Model_DocumentTypes modelSelectedDocumentType;
 	private RadioGroup radioActionType;
 	private View viewAgreeInstance;
 	private int radioSelectedPosition;
 	private String strAppTypeAction;
 	private String strDocFilePath;
+	private CheckBox radioIncludeMessageTrue;
+	private String strIncludeMessageToTrue = "";
+	private ImplementPopupAction implementPopupAction;
+	private TextView txtMessageDesc;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 
 		View view = inflater.inflate(R.layout.activity_agree_file, container,
 				false);
@@ -85,7 +95,6 @@ public class ViewAgreeFile extends BaseContainerFragment implements
 
 	@Override
 	public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
-		// TODO Auto-generated method stub
 		switch (transit) {
 		case FragmentTransaction.TRANSIT_FRAGMENT_FADE:
 			if (enter) {
@@ -122,11 +131,15 @@ public class ViewAgreeFile extends BaseContainerFragment implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		bundleArgument = getArguments();
+		// Getting document Guid using extra
 		strGuid = bundleArgument
 				.getString(CommonVariable.PUT_EXTRA_DOCUMENT_GUID);
 		strDocFilePath = bundleArgument
 				.getString(CommonVariable.PUT_EXTRA_DOCUMENT_FILE_PATH);
 		modelSelectedDoc = Tbl_Documents.selectDocument(strGuid);
+		modelSelectedDocumentType = Tbl_DocumentTypes
+				.SelectTypeCodeModel(modelSelectedDoc.type_code);
+
 		strAppReadTime = modelSelectedDoc.app_date_read_at;
 		if (strAppReadTime == null || strAppReadTime.trim().length() < 0) {
 			Calendar cal = Calendar.getInstance();
@@ -134,6 +147,7 @@ public class ViewAgreeFile extends BaseContainerFragment implements
 			strAppReadTime = CommonMethod.getDate(milisecond,
 					CommonVariable.DATABASE_DATE_FORMAT);
 		}
+		implementPopupAction = this;
 
 	}
 
@@ -149,13 +163,20 @@ public class ViewAgreeFile extends BaseContainerFragment implements
 				R.string.myfolder_strMyFolderHeader));
 		imgShare.setVisibility(View.VISIBLE);
 		btnNextLink.setVisibility(View.VISIBLE);
+		txtMessageDesc = (TextView) view.findViewById(R.id.agreefiletxtDesc);
+		if (modelSelectedDocumentType != null) {
+			txtMessageDesc.setText(modelSelectedDocumentType.action_prompt);
+		}
 		radioActionType = (RadioGroup) view
 				.findViewById(R.id.agreefile_radioGroup);
+		radioIncludeMessageTrue = (CheckBox) view
+				.findViewById(R.id.agreefile_radioInclude);
 		btnNextLink.setCompoundDrawables(null, null, null, null);
 		btnNextLink
 				.setText(getResources().getString(R.string.myfolder_strNext));
 		btnNextLink.setOnClickListener(this);
 		imgShare.setOnClickListener(this);
+
 	}
 
 	@Override
@@ -168,26 +189,24 @@ public class ViewAgreeFile extends BaseContainerFragment implements
 				return;
 			}
 
-			if (!CommonMethod.isInternetAvailable(getActivity())) {
-				CommonMethod.showPopupValidation(
-						getActivity(),
-						getActivity().getResources().getString(
-								R.string.validation_internetoffline), false);
+			radioSelectedPosition = radioActionType
+					.indexOfChild(viewAgreeInstance.findViewById(isSelectedId));
+			switch (radioSelectedPosition) {
+			case 0:
+				strAppTypeAction = CommonVariable.STATUS_AGREE_DOCUMENT;
+				break;
+			case 1:
+				strAppTypeAction = CommonVariable.STATUS_DO_NOT_AGREE_DOCUMENT;
+				break;
+			}
+			if (radioIncludeMessageTrue.isChecked()) {
+				showPopupIncludeMessageToTrue(getActivity(),
+						radioIncludeMessageTrue);
 			} else {
-				radioSelectedPosition = radioActionType
-						.indexOfChild(viewAgreeInstance
-								.findViewById(isSelectedId));
-				switch (radioSelectedPosition) {
-				case 0:
-					strAppTypeAction = "1";
-					break;
-				case 1:
-					strAppTypeAction = "0";
-					break;
-				}
 
 				WebCallDocumentActionPerform();
 			}
+
 		} else if (v == imgShare) {
 			File mDocumentFile = new File(strDocFilePath);
 			if (mDocumentFile != null && mDocumentFile.exists()) {
@@ -206,9 +225,17 @@ public class ViewAgreeFile extends BaseContainerFragment implements
 	 * call messages api and reloat message tab
 	 */
 	private void WebCallDocumentActionPerform() {
+
 		if (strAppTypeAction == null || strAppTypeAction.trim().length() < 0) {
 			CommonMethod.showPopupValidation(getActivity(), getResources()
 					.getString(R.string.validation_agreedissagree), false);
+			return;
+		}
+		if (!CommonMethod.isInternetAvailable(getActivity())) {
+			CommonMethod.showPopupValidation(
+					getActivity(),
+					getActivity().getResources().getString(
+							R.string.validation_internetoffline), false);
 			return;
 		}
 		showKcsDialog();
@@ -224,21 +251,24 @@ public class ViewAgreeFile extends BaseContainerFragment implements
 							CommonVariable.DATABASE_DATE_FORMAT);
 					// Appreadtime,appactiontime,docguid,claimauthtoken
 					final Model_WebResponse modelResponse = WebCalls
-							.setDocumentGuidAction(strAppReadTime,
+							.setDocumentGuidAction(
 									strAppActionTime, strAppTypeAction,
-									strGuid, strClaimAuthToken);
+									strGuid, strIncludeMessageToTrue,
+									strClaimAuthToken, false);
 					mHandler.post(new Runnable() {
 
 						@Override
 						public void run() {
 							if (modelResponse.responseCode
 									.equalsIgnoreCase(CommonVariable.RESPONSE_CODE_SUCCESS)) {
-								showPopupValidation(
-										getActivity(),
-										getActivity()
-												.getResources()
-												.getString(
-														R.string.validation_agree_message));
+								CommonMethod
+										.showPopupValidationInterface(
+												getActivity(),
+												getActivity()
+														.getResources()
+														.getString(
+																R.string.validation_agree_message),
+												false, implementPopupAction);
 
 							} else {
 								CommonMethod.showPopupValidation(getActivity(),
@@ -260,7 +290,6 @@ public class ViewAgreeFile extends BaseContainerFragment implements
 					CommonMethod.showWebServiceCallErrorDialog(getActivity(),
 							e.getMessage(), false);
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 
 					CommonMethod.showWebServiceCallErrorDialog(getActivity(),
@@ -302,7 +331,10 @@ public class ViewAgreeFile extends BaseContainerFragment implements
 			kcsDialog.dismiss();
 	}
 
-	public void showPopupValidation(final Activity activity, String message) {
+	// Sent Text message to True solictior when selected
+	// "Include Message to true";
+	public void showPopupIncludeMessageToTrue(final Activity activity,
+			final CheckBox radioIncludeMessage) {
 
 		final Dialog dialog = new Dialog(activity);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -311,18 +343,21 @@ public class ViewAgreeFile extends BaseContainerFragment implements
 		dialog.getWindow().setGravity(Gravity.CENTER);
 		dialog.getWindow().setBackgroundDrawable(
 				new ColorDrawable(Color.TRANSPARENT));
-		dialog.setContentView(R.layout.xml_popup_validation_message);
+		dialog.setContentView(R.layout.xml_popup_send_message);
 		dialog.setCanceledOnTouchOutside(false);
 		dialog.setCancelable(false);
-		TextView txtMessage = (TextView) dialog
-				.findViewById(R.id.xml_popup_validation_txtMessage);
-		txtMessage.setText(message);
-
+		final EditText edtMessageOptional = (EditText) dialog
+				.findViewById(R.id.xml_popupsend_txtMessage);
+		edtMessageOptional.setHint(activity.getResources().getString(
+				R.string.agreefile_strSendMessageHint));
+		final Button btnCancel = (Button) dialog
+				.findViewById(R.id.xml_popupsend_btnCancel);
 		final Button btnOk = (Button) dialog
-				.findViewById(R.id.xml_popupvalidation_btnOk);
-
+				.findViewById(R.id.xml_popupsend_btnOk);
+		final RelativeLayout relCancel = (RelativeLayout) dialog
+				.findViewById(R.id.xml_popupsend_relCancel);
 		final RelativeLayout relOk = (RelativeLayout) dialog
-				.findViewById(R.id.xml_popupvalidation_relOk);
+				.findViewById(R.id.xml_popupsend_relOk);
 
 		relOk.setOnClickListener(new OnClickListener() {
 
@@ -332,6 +367,23 @@ public class ViewAgreeFile extends BaseContainerFragment implements
 				btnOk.performClick();
 			}
 		});
+		relCancel.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				btnCancel.performClick();
+
+			}
+		});
+		btnCancel.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				dialog.dismiss();
+				radioIncludeMessage.setChecked(false);
+			}
+		});
 
 		btnOk.setOnClickListener(new OnClickListener() {
 
@@ -339,19 +391,19 @@ public class ViewAgreeFile extends BaseContainerFragment implements
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				dialog.dismiss();
+				strIncludeMessageToTrue = edtMessageOptional.getText()
+						.toString();
+				WebCallDocumentActionPerform();
 
-				// ((BaseContainerFragment)
-				// getParentFragment()).replaceFragment(
-				// new FragmentMyFolder(), true);
-				((ViewMainFragment) getActivity()).actionbar
-						.selectTab(((ViewMainFragment) getActivity()).messageTab);
-
-				// ((ViewMainFragment) getActivity()).actionbar
-				// .selectTab(((ViewMainFragment) getActivity()).myFolderTab);
 			}
 		});
-		if (!activity.isFinishing()) {
-			dialog.show();
-		}
+		dialog.show();
+	}
+
+	// Handling onClick Popup Validation tab change (MyFolderTab to Message Tab)
+	@Override
+	public void onOkClickHandler(Activity activity, Dialog dialog, Button btnOk) {
+		((ViewMainFragment) getActivity()).actionbar
+				.selectTab(((ViewMainFragment) getActivity()).messageTab);
 	}
 }

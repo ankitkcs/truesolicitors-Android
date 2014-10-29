@@ -1,0 +1,35 @@
+29-10-2014
+LinkToClaim Screen
+1)Removing DatePicker dialog in DOB
+2)Change Success LinkToClaim Dialog
+
+Message Screen
+1)Change image True,User icon and New Text change padding.
+
+Enter Passcode
+1)Handle Back button -Set the Message Tab
+2)Set Success Dialog in LinkYourClaim,Message and MyFolder(Common)
+
+FAQ's Screen
+1)Removing Arrow Icon
+2)Change Row Faq(Inflating view)
+
+FAQ Detail Screen
+1)Set Header Gravity change (Left)
+2)set White background at bottom
+
+
+Type of injury,About True,Why True?
+1)Change Font Size and change font (robot -regular)
+
+
+MoreOption Screen
+1)Change Text padding
+2)Remove arrow icon right side
+
+
+Contact Screen
+1)Layout changes and TrueSolicitior icon change
+
+Passcode Screen Change
+1)Forgotton passcode screen create

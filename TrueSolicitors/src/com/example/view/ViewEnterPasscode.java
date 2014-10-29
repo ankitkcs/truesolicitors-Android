@@ -29,13 +29,15 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.fragment.BaseContainerFragment;
 import com.example.trueclaims.R;
 import com.example.utils.CommonMethod;
 import com.example.utils.CommonVariable;
 
 /**
- * This class used in Document -When click the Folder tab 
- * Everytime is call when open 2 tab.
+ * This class used in Document -When click the Folder tab Everytime is call when
+ * open 2 tab.
+ * 
  * @author sanket
  * 
  */
@@ -56,6 +58,7 @@ public class ViewEnterPasscode extends Activity implements OnClickListener {
 	private String savePassword;
 	private TextView txtForgottenPassword;
 	private RelativeLayout rltvRememberMe;
+	private TextView txtPasscodeMessage;
 
 	@Override
 	protected void onResume() {
@@ -63,13 +66,30 @@ public class ViewEnterPasscode extends Activity implements OnClickListener {
 		super.onResume();
 		savePassword = CommonMethod.getSharePrefrence(ViewEnterPasscode.this,
 				CommonVariable.PREFS_FOLDER_PASSWORD);
-		if (savePassword != null && savePassword.trim().length() > 0) {
+		isPasscodeSaveAlready = CommonMethod.getSharePrefrenceBoolean(
+				ViewEnterPasscode.this,
+				CommonVariable.PREFS_DIALOG_PASSCODE_SAVE_ALREADY);
 
-			rltvRememberMe.setVisibility(View.GONE);
-			txtForgottenPassword.setVisibility(View.VISIBLE);
-		} else {
+		if (savePassword == null || savePassword.trim().equalsIgnoreCase("")) {
+
+			txtCommonHeader.setText(getResources().getString(
+					R.string.passcode_strCreatePasscode));
+			txtPasscodeMessage.setText(getResources().getString(
+					R.string.passcode_strPasscodeDesc));
+
 			txtForgottenPassword.setVisibility(View.GONE);
 			rltvRememberMe.setVisibility(View.VISIBLE);
+			btnCommonSave.setText(getResources().getString(
+					R.string.passcode_strSave));
+		} else {
+			txtCommonHeader.setText(getResources().getString(
+					R.string.passcode_enterpasscode));
+			txtPasscodeMessage.setText(getResources().getString(
+					R.string.dialog_strpasswordenter_header));
+			rltvRememberMe.setVisibility(View.GONE);
+			txtForgottenPassword.setVisibility(View.VISIBLE);
+			btnCommonSave.setText(getResources().getString(
+					R.string.passcode_strSubmit));
 		}
 	}
 
@@ -126,10 +146,12 @@ public class ViewEnterPasscode extends Activity implements OnClickListener {
 
 			}
 		} else if (v == imgBack) {
-			CommonMethod.showPopupValidation(ViewEnterPasscode.this,
-					getResources().getString(R.string.validation_password),
-					false);
-			return;
+			onBackPressed();
+		} else if (v == txtForgottenPassword) {
+			Intent intent = new Intent(this, ViewLinkYourClaims.class);
+			intent.putExtra(CommonVariable.PUT_EXTRA_LINK_PREVIOUS_CLASS,
+					CommonVariable.VALIDATION_PASSCODE_SCREEN);
+			startActivity(intent);
 		}
 	}
 
@@ -149,7 +171,7 @@ public class ViewEnterPasscode extends Activity implements OnClickListener {
 		TextView txtMessage = (TextView) dialog
 				.findViewById(R.id.xml_popup_validation_txtMessage);
 		txtMessage.setText(message);
-		
+
 		final Button btnOk = (Button) dialog
 				.findViewById(R.id.xml_popupvalidation_btnOk);
 
@@ -181,27 +203,24 @@ public class ViewEnterPasscode extends Activity implements OnClickListener {
 		}
 	}
 
+	@Override
 	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		Intent intent = new Intent();
+		intent.putExtra("tab", "FOLDERTAB");
+		setResult(RESULT_CANCELED, intent);
+		finish();
 
-//		Intent intent = new Intent();
-//		intent.putExtra("tab", "FOLDERTAB");
-//		setResult(RESULT_CANCELED, intent);
-//		finish();
-		CommonMethod.showPopupValidation(ViewEnterPasscode.this,
-				getResources().getString(R.string.validation_password),
-				false);
 	}
 
 	private void init() {
 		strHeader = bundle.getString(CommonVariable.PUT_EXTRA_CLAIM_NO);
-		isPasscodeSaveAlready = CommonMethod.getSharePrefrenceBoolean(
-				ViewEnterPasscode.this,
-				CommonVariable.PREFS_DIALOG_PASSCODE_SAVE_ALREADY);
 
 		txtCommonHeader = (TextView) findViewById(R.id.commonview_txtHeader);
 		btnCommonSave = (Button) findViewById(R.id.commonview_btnSubmitLink);
 		imgBack = (ImageView) findViewById(R.id.commonview_imgback);
 		imgBack.setOnClickListener(this);
+
 		// int EditTextWidth = (CommonMethod.getDeviceWidth(this) / 4) - 20;
 		edtText = (EditText) findViewById(R.id.editText1);
 
@@ -213,6 +232,7 @@ public class ViewEnterPasscode extends Activity implements OnClickListener {
 		edtText.setClickable(false);
 		txtForgottenPassword = (TextView) findViewById(R.id.passcode_txtForgottenPassword);
 		rltvRememberMe = (RelativeLayout) findViewById(R.id.passcode_linearremember);
+		txtPasscodeMessage = (TextView) findViewById(R.id.passcode_txtClaimText);
 		edtText.setImeOptions(EditorInfo.IME_FLAG_NO_ENTER_ACTION);
 
 		edtText.addTextChangedListener(new TextWatcher() {
@@ -247,8 +267,8 @@ public class ViewEnterPasscode extends Activity implements OnClickListener {
 		});
 
 		// TempSet
-		txtCommonHeader.setText(getResources().getString(
-				R.string.passcode_strCreatePasscode));
+
+		txtForgottenPassword.setOnClickListener(this);
 	}
 
 	private void setBackgroundResource(int i) {
@@ -262,6 +282,8 @@ public class ViewEnterPasscode extends Activity implements OnClickListener {
 			view2.setBackgroundResource(R.drawable.passcode_no_fill);
 			view3.setBackgroundResource(R.drawable.passcode_no_fill);
 			view4.setBackgroundResource(R.drawable.passcode_no_fill);
+			txtCommonHeader.setText(getResources().getString(
+					R.string.passcode_enterpasscode));
 		} else if (i == 1) {
 			view1.setBackgroundResource(R.drawable.passcode_filled);
 			view2.setBackgroundResource(R.drawable.passcode_no_fill);
@@ -269,6 +291,8 @@ public class ViewEnterPasscode extends Activity implements OnClickListener {
 			view4.setBackgroundResource(R.drawable.passcode_no_fill);
 
 			btnCommonSave.setVisibility(View.GONE);
+			txtCommonHeader.setText(getResources().getString(
+					R.string.passcode_enterpasscode));
 		} else if (i == 2) {
 
 			view1.setBackgroundResource(R.drawable.passcode_filled);
@@ -278,6 +302,8 @@ public class ViewEnterPasscode extends Activity implements OnClickListener {
 			view4.setBackgroundResource(R.drawable.passcode_no_fill);
 
 			btnCommonSave.setVisibility(View.GONE);
+			txtCommonHeader.setText(getResources().getString(
+					R.string.passcode_enterpasscode));
 		} else if (i == 3) {
 			view1.setBackgroundResource(R.drawable.passcode_filled);
 
@@ -286,6 +312,8 @@ public class ViewEnterPasscode extends Activity implements OnClickListener {
 			view4.setBackgroundResource(R.drawable.passcode_no_fill);
 
 			btnCommonSave.setVisibility(View.GONE);
+			txtCommonHeader.setText(getResources().getString(
+					R.string.passcode_enterpasscode));
 		} else if (i == 4) {
 
 			view1.setBackgroundResource(R.drawable.passcode_filled);
@@ -300,7 +328,6 @@ public class ViewEnterPasscode extends Activity implements OnClickListener {
 			// btnCommonSave.setCompoundDrawablesWithIntrinsicBounds(img,
 			// null, null, null);
 			btnCommonSave.setOnClickListener(this);
-
 			if (!isPasscodeSaveAlready) {
 
 				btnCommonSave.setText(getResources().getString(

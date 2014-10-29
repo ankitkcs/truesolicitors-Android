@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.fragment.BaseContainerFragment;
 import com.example.fragment.ViewMainFragment;
 import com.example.trueclaims.R;
+import com.example.utils.CommonMethod;
 import com.example.utils.CommonVariable;
 
 /**
@@ -97,13 +98,20 @@ public class ViewMoreDetailDesc extends BaseContainerFragment {
 	private void setMoreDescScreenwise(String intBundleMoreHeader2) {
 		if (intBundleMoreHeader.equalsIgnoreCase(getResources().getString(
 				R.string.more_abouttrue))) {
-			txtMoreDesc.setText(Html.fromHtml(getResources().getString(R.string.more_abouttrue_desc)));
+			txtMoreDesc.setText(Html.fromHtml(getResources().getString(
+					R.string.more_abouttrue_desc)));
+		} else if (intBundleMoreHeader.equalsIgnoreCase(getResources()
+				.getString(R.string.more_whytrue))) {
+			txtMoreDesc.setText(Html.fromHtml(getResources().getString(
+					R.string.more_whytrue_desc)));
+		} else if (intBundleMoreHeader.equalsIgnoreCase(getResources()
+				.getString(R.string.more_typeofinjuries))) {
+			txtMoreDesc.setText(
+					Html.fromHtml(getResources().getString(
+							R.string.more_typeofinjuries_desc)),
+					TextView.BufferType.SPANNABLE);
 		}
-		else if (intBundleMoreHeader.equalsIgnoreCase(getResources().getString(
-				R.string.more_whytrue))) {
-			txtMoreDesc.setText(Html.fromHtml(getResources().getString(R.string.more_whytrue_desc)));
-		}
-
+//		CommonMethod.setFontRobotoRegular(getActivity(), txtMoreDesc);
 	}
 
 	private void homeFragmentConfigure(View view) {

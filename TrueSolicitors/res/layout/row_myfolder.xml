@@ -34,6 +34,8 @@
             android:paddingRight="@dimen/margin_5dp"
             android:text="Lattest_PDF.pdf"
             android:textColor="@color/color_black"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:textSize="@dimen/font_16dp"
             android:textStyle="bold" />
 
@@ -68,14 +70,11 @@
                 <FrameLayout
                     android:id="@+id/myfolder_frameread"
                     android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    
                     android:layout_height="wrap_content" >
 
-                    <ImageView
-                        android:id="@+id/row_myFolder_img1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/tick_doc_icon"
-                        android:visibility="invisible" />
+                   
 
                     <ImageView
                         android:id="@+id/row_myFolder_imgStatusRead"
@@ -107,14 +106,10 @@
                 <FrameLayout
                     android:id="@+id/myfolder_frameaction"
                     android:layout_width="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_height="wrap_content" >
 
-                    <ImageView
-                        android:id="@+id/row_myFolder_img"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/tick_doc_icon"
-                        android:visibility="invisible" />
+                 
 
                     <ImageView
                         android:id="@+id/row_myfolder_imgStatusAction"

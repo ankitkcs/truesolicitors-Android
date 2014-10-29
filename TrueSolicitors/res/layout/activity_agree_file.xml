@@ -87,7 +87,7 @@
 
             </RadioGroup>
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/agreefile_radioInclude"
                 android:layout_width="wrap_content"
                     android:layout_marginTop="@dimen/margin_5dp"

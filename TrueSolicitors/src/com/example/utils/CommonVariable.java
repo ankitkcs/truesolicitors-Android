@@ -81,5 +81,15 @@ public class CommonVariable {
 	public static final String PUT_EXTRA_MORE_HEADER = "more_desc_header";
 	// Tab No by default selected
 	public static boolean IS_ONLYFAQ = false;
+	// Agree Document status
+	public static final String STATUS_AGREE_DOCUMENT = "1";
+	public static final String STATUS_DO_NOT_AGREE_DOCUMENT = "1";
+	// Report Claim Mail Configuration
+	public static final String REPORT_CLAIM_MAIL = "office@true.co.uk";
+	public static final String REPORT_CLAIM_SUBJECT = "Enquiry from the TRUE website";
+	public static final String REPORT_CLAIM_TITLE= "I wish to report a new claim";
+	public static final String VALIDATION_PASSCODE_SCREEN = "ACTIVITY_PASSCODE";
+	public static final String VALIDATION_LINKYOURCLAIM_SCREEN = "ACTIVITY_LINKYOURCLAIM";
+	public static final String PUT_EXTRA_LINK_PREVIOUS_CLASS = "PASSCODE_PREVIOUS_ACTIVITY";
 
 }

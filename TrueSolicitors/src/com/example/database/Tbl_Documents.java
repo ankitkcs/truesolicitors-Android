@@ -28,7 +28,7 @@ public class Tbl_Documents {
 		SQLiteDatabase sqldb = TrueClaimsApp.sqLiteDatabase;
 		ArrayList<Model_Documents> arrModelList = null;
 		Cursor cursor = null;
-		String Query = "Select * from " + TableName;
+		String Query = "Select * from " + TableName+ " ORDER BY created_at DESC";
 		cursor = sqldb.rawQuery(Query, null);
 		if (cursor != null && cursor.moveToFirst()) {
 			arrModelList = new ArrayList<Model_Documents>();
@@ -105,28 +105,27 @@ public class Tbl_Documents {
 		Model_Documents model = null;
 		if (cursor != null && cursor.moveToFirst()) {
 
-			do {
-				model = new Model_Documents();
-				model.id = (cursor.getString(cursor.getColumnIndex(ID)));
-				model.guid = (cursor.getString(cursor.getColumnIndex(GUID)));
-				model.name = (cursor.getString(cursor.getColumnIndex(NAME)));
-				model.app_date_read_at = (cursor.getString(cursor
-						.getColumnIndex(APP_DATE_READ_AT)));
-				model.app_date_actioned_at = (cursor.getString(cursor
-						.getColumnIndex(APP_DATE_ACTIONED_AT)));
-				model.type_code = (cursor.getString(cursor
-						.getColumnIndex(TYPE_CODE)));
-				model.created_at = (cursor.getString(cursor
-						.getColumnIndex(CREATED_AT)));
-				model.record_created_at = (cursor.getString(cursor
-						.getColumnIndex(RECORD_CREATED_AT)));
+			model = new Model_Documents();
+			model.id = (cursor.getString(cursor.getColumnIndex(ID)));
+			model.guid = (cursor.getString(cursor.getColumnIndex(GUID)));
+			model.name = (cursor.getString(cursor.getColumnIndex(NAME)));
+			model.app_date_read_at = (cursor.getString(cursor
+					.getColumnIndex(APP_DATE_READ_AT)));
+			model.app_date_actioned_at = (cursor.getString(cursor
+					.getColumnIndex(APP_DATE_ACTIONED_AT)));
+			model.type_code = (cursor.getString(cursor
+					.getColumnIndex(TYPE_CODE)));
+			model.created_at = (cursor.getString(cursor
+					.getColumnIndex(CREATED_AT)));
+			model.record_created_at = (cursor.getString(cursor
+					.getColumnIndex(RECORD_CREATED_AT)));
 
-				model.claim_number = (cursor.getString(cursor
-						.getColumnIndex(CLAIM_NUMBER)));
+			model.claim_number = (cursor.getString(cursor
+					.getColumnIndex(CLAIM_NUMBER)));
 
-				model.action_performed = (cursor.getString(cursor
-						.getColumnIndex(ACTION_PERFORMED)));
-			} while (cursor.moveToNext());
+			model.action_performed = (cursor.getString(cursor
+					.getColumnIndex(ACTION_PERFORMED)));
+
 			cursor.close();
 		}
 		return model;

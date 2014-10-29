@@ -33,6 +33,7 @@ import com.example.database.Tbl_LinkToClaim;
 import com.example.database.Tbl_Messages;
 import com.example.fragment.BaseContainerFragment;
 import com.example.fragment.ViewMainFragment;
+import com.example.implement.ImplementPopupAction;
 import com.example.model.Model_LinkToClaim;
 import com.example.model.Model_Messages;
 import com.example.model.Model_WebResponse;
@@ -44,15 +45,16 @@ import com.example.utils.WebCalls;
 import com.markupartist.android.widget.PullToRefreshListView;
 import com.markupartist.android.widget.PullToRefreshListView.OnRefreshListener;
 
-/** 
- * Getting List of messages using ws and load ws 
- * First time all is new message -Ws Call Without parameter first time and after second time
- * passing last Claim number unique id- load another new message if available in server
+/**
+ * Getting List of messages using ws and load ws First time all is new message
+ * -Ws Call Without parameter first time and after second time passing last
+ * Claim number unique id- load another new message if available in server
+ * 
  * @author sanket
  * 
  */
 public class ViewMessage extends BaseContainerFragment implements
-		OnClickListener {
+		OnClickListener, ImplementPopupAction {
 	private PullToRefreshListView listViewMessage;
 	private EditText edtSearchView;
 	private AdapterMessageList adapter;
@@ -70,6 +72,7 @@ public class ViewMessage extends BaseContainerFragment implements
 	private Button btnNextLink;
 	private ImageView imgShare;
 	private Activity activity;
+	private ImplementPopupAction implementPopupAction;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -142,13 +145,14 @@ public class ViewMessage extends BaseContainerFragment implements
 			}
 
 			int dialogIcon = R.drawable.link_popup_icon;
-			String strClaimString = "Claim ";
+
 			String strMessageDetail = CommonVariable.DIALOG_SUCCESS_MESSAGE_DESC
 
 			.replace("CLAIM_NUMBER", strClaimNumber);
-			showPopupSuccessDialog(getActivity(), strDialogHeader, dialogIcon,
-					strMessageDetail,
-					CommonVariable.PREFS_DIALOG_MESSAGE_ISOPEN, null, false);
+			CommonMethod.showPopupSuccessDialog(getActivity(), strDialogHeader,
+					dialogIcon, strMessageDetail,
+				  false,
+					implementPopupAction);
 
 		} else {
 
@@ -180,67 +184,6 @@ public class ViewMessage extends BaseContainerFragment implements
 
 	}
 
-	/**
-	 * Showing Success Dialog Use in MyFolder,Message,Passcode Time
-	 * 
-	 * @param activity
-	 * @param message
-	 * @param b
-	 * @param prefsDialogMyfolderIsopen
-	 * @return
-	 */
-	public Dialog showPopupSuccessDialog(final Activity activity, String title,
-			int icon, String message, final String sharedPrefKey,
-			final Intent intent, final boolean isFinishActivity) {
-
-		final Dialog dialog = new Dialog(activity,
-				android.R.style.Theme_NoTitleBar);
-		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// dialog.getWindow().setBackgroundDrawable(
-		// activity.getResources().getDrawable(
-		// R.drawable.shape_box_transparancy));
-		dialog.getWindow().setBackgroundDrawable(
-				new ColorDrawable(activity.getResources().getColor(
-						R.color.color_popup_background)));
-		dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,
-				ViewGroup.LayoutParams.MATCH_PARENT);
-		dialog.getWindow().setGravity(Gravity.CENTER);
-		dialog.setCancelable(false);
-		dialog.setContentView(R.layout.dialog_common_success_msg);
-		dialog.setCanceledOnTouchOutside(false);
-		// WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
-		// lp.dimAmount=0.5f;
-		// dialog.getWindow().setAttributes(lp);
-		// dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
-		final TextView txtHeader = (TextView) dialog
-				.findViewById(R.id.dialogsuccess_txtHeader);
-		final ImageView imgIcon = (ImageView) dialog
-				.findViewById(R.id.dialogsuccess_imgIcon);
-		final TextView txtMessge = (TextView) dialog
-				.findViewById(R.id.dialogsuccess_txtDesc);
-		txtHeader.setText(title);
-		txtMessge.setText(message);
-		imgIcon.setImageResource(icon);
-		// txtMessage.setText(message);
-		final Button btnOk = (Button) dialog
-				.findViewById(R.id.dialogsuccess_btnOk);
-
-		btnOk.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				dialog.dismiss();
-				CommonMethod.setSharePrefrenceBoolean(activity, sharedPrefKey,
-						true);
-				WebCallGetMessages(false);
-
-			}
-		});
-
-		dialog.show();
-		return dialog;
-	}
-
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
@@ -265,7 +208,7 @@ public class ViewMessage extends BaseContainerFragment implements
 		imgShare = ((ViewMainFragment) getActivity()).imgShare;
 		btnNextLink.setVisibility(View.GONE);
 		imgShare.setVisibility(View.GONE);
-
+		implementPopupAction = this;
 		edtSearchView.addTextChangedListener(new TextWatcher() {
 
 			@Override
@@ -388,6 +331,17 @@ public class ViewMessage extends BaseContainerFragment implements
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 
+	}
+
+	/**
+	 * Opening Success dialog ok Click handle and updating Shareprefrence if
+	 * dialog is open
+	 */
+	@Override
+	public void onOkClickHandler(Activity activity, Dialog dialog, Button btnOk) {
+		CommonMethod.setSharePrefrenceBoolean(activity,
+				CommonVariable.PREFS_DIALOG_MESSAGE_ISOPEN, true);
+		WebCallGetMessages(false);
 	}
 
 }

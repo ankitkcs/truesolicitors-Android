@@ -8,6 +8,7 @@ import java.util.Calendar;
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -33,9 +34,12 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.database.Tbl_DocumentTypes;
 import com.example.database.Tbl_Documents;
 import com.example.fragment.BaseContainerFragment;
 import com.example.fragment.ViewMainFragment;
+import com.example.implement.ImplementPopupAction;
+import com.example.model.Model_DocumentTypes;
 import com.example.model.Model_Documents;
 import com.example.model.Model_WebResponse;
 import com.example.trueclaims.R;
@@ -46,9 +50,8 @@ import com.example.utils.MuPdfReader;
 import com.example.utils.WebCalls;
 
 /**
- * opening Pdf encoded file using document guid and passing webservice
- * Save in Sdcard 
- * after showing this document using PDF LIBRARY
+ * opening Pdf encoded file using document guid and passing webservice Save in
+ * Sdcard after showing this document using PDF LIBRARY
  * 
  * 
  * @author sanket
@@ -72,6 +75,8 @@ public class ViewMyFolderDetail extends BaseContainerFragment implements
 	private ImageView btnBack;
 	Bundle saveInstnace;
 
+	Model_Documents modelSelectedDocument;
+	Model_DocumentTypes modelSelectedDocumentType;
 	private boolean isConfirmRead = false;
 
 	@Override
@@ -126,10 +131,9 @@ public class ViewMyFolderDetail extends BaseContainerFragment implements
 		super.onCreate(savedInstanceState);
 		bundleArgument = getArguments();
 		saveInstnace = savedInstanceState;
-		if (strGuid == null || strGuid.trim().length() < 0) {
-			strGuid = bundleArgument
-					.getString(CommonVariable.PUT_EXTRA_DOCUMENT_GUID);
-		}
+		strGuid = bundleArgument
+				.getString(CommonVariable.PUT_EXTRA_DOCUMENT_GUID);
+
 		Log.d("tag", "Str Guid is " + strGuid);
 
 	}
@@ -151,13 +155,18 @@ public class ViewMyFolderDetail extends BaseContainerFragment implements
 				R.string.myfolder_strMyFolderHeader));
 		imgShare.setVisibility(View.VISIBLE);
 
-		
-		
-		// Check Any Action perfomed or not Agree or Disagrees
-		Model_Documents modelDocument = Tbl_Documents.selectDocument(strGuid);
+		btnNextLink.setCompoundDrawables(null, null, null, null);
+		btnNextLink.setVisibility(View.VISIBLE);
+		btnNextLink
+				.setText(getResources().getString(R.string.myfolder_strNext));
+		btnNextLink.setOnClickListener(this);
+		btnNextLink.setEnabled(true);
+		// // Check Any Action perfomed or not Agree or Disagrees
+		modelSelectedDocument = Tbl_Documents.selectDocument(strGuid);
+		// // Checking action performed or not
 
-		if (modelDocument.action_performed == null
-				|| modelDocument.action_performed.trim().length() < 0) {
+		if (modelSelectedDocument.app_date_read_at == null
+				|| modelSelectedDocument.app_date_read_at.equalsIgnoreCase("")) {
 			btnNextLink.setCompoundDrawables(null, null, null, null);
 			btnNextLink.setVisibility(View.VISIBLE);
 			btnNextLink.setText(getResources().getString(
@@ -165,9 +174,25 @@ public class ViewMyFolderDetail extends BaseContainerFragment implements
 			btnNextLink.setOnClickListener(this);
 			btnNextLink.setEnabled(true);
 		} else {
-			btnNextLink.setVisibility(View.GONE);
+			// Check document_type in action_prompt blank or not
+			if (modelSelectedDocument.app_date_actioned_at.equalsIgnoreCase("")) {
+				modelSelectedDocumentType = Tbl_DocumentTypes
 
+				.SelectTypeCodeModel(modelSelectedDocument.type_code);
+				if (modelSelectedDocumentType != null) {
+					if (modelSelectedDocumentType.action_prompt == null
+							|| modelSelectedDocumentType.action_prompt
+									.equalsIgnoreCase("")) {
+						btnNextLink.setVisibility(View.GONE);
+					} else {
+						btnNextLink.setVisibility(View.VISIBLE);
+					}
+				}
+			} else {
+				btnNextLink.setVisibility(View.GONE);
+			}
 		}
+
 		imgShare.setOnClickListener(this);
 		if (!CommonMethod.isInternetAvailable(getActivity())) {
 			btnBack.setEnabled(true);
@@ -190,7 +215,23 @@ public class ViewMyFolderDetail extends BaseContainerFragment implements
 	@Override
 	public void onClick(View v) {
 		if (v == btnNextLink) {
-			showPopupConfirmRead();
+			// Check document Not Read(app_read_at blank then showing
+			// confirmation
+			// message)
+			if (modelSelectedDocument.app_date_read_at == null
+					|| modelSelectedDocument.app_date_read_at
+							.equalsIgnoreCase("")) {
+				showPopupConfirmRead();
+			} else {
+				// If Document Read then Check action_prompt is blank or not
+				modelSelectedDocumentType = Tbl_DocumentTypes
+						.SelectTypeCodeModel(modelSelectedDocument.type_code);
+				// Check Model Document Type in action_prompt blank or not
+				if (!modelSelectedDocumentType.action_prompt
+						.equalsIgnoreCase("")) {
+					openAgreeDocumentIntent();
+				}
+			}
 		} else if (v == imgShare) {
 			if (mDocumentFile != null && mDocumentFile.exists()) {
 				CommonMethod.dialogFileShareApp(getActivity(), strGuid, "",
@@ -256,28 +297,11 @@ public class ViewMyFolderDetail extends BaseContainerFragment implements
 					Model_Documents modelDocuments = Tbl_Documents
 							.selectDocument(strGuid);
 					if (modelDocuments != null) {
-						if (modelDocuments.app_date_read_at == null
-								|| modelDocuments.app_date_read_at.trim()
-										.equalsIgnoreCase("")) {
-							Calendar cal = Calendar.getInstance();
-							long milisecond = cal.getTimeInMillis();
-							modelDocuments.app_date_read_at = CommonMethod
-									.getDate(milisecond,
-											CommonVariable.DATABASE_DATE_FORMAT);
-							Tbl_Documents.updateDocument(modelDocuments);
 
-						}
+						WebCallUpdateReadActionToDoc();
+
 					}
-					ViewAgreeFile ViewAgreeFileFrag = new ViewAgreeFile();
-					Bundle bundle = new Bundle();
-					bundle.putString(CommonVariable.PUT_EXTRA_DOCUMENT_GUID,
-							strGuid);
-					bundle.putString(
-							CommonVariable.PUT_EXTRA_DOCUMENT_FILE_PATH,
-							mDocumentFile.getAbsolutePath());
-					ViewAgreeFileFrag.setArguments(bundle);
-					((BaseContainerFragment) getParentFragment())
-							.replaceFragment(ViewAgreeFileFrag, true);
+
 				} else {
 					btnCancel.performClick();
 					isConfirmRead = false;
@@ -307,6 +331,90 @@ public class ViewMyFolderDetail extends BaseContainerFragment implements
 			}
 		});
 		myAlertDialog.show();
+	}
+
+	/**
+	 * Selecting confirm read in Confirm read popup Updating read status in this
+	 * doc api post method
+	 * 
+	 * @param modelDocuments
+	 */
+	protected void WebCallUpdateReadActionToDoc() {
+		if (!CommonMethod.isInternetAvailable(getActivity())) {
+			CommonMethod.showPopupValidation(getActivity(), getResources()
+					.getString(R.string.validation_internetoffline),
+
+			false);
+			return;
+		}
+
+		Calendar cal = Calendar.getInstance();
+		long milisecond = cal.getTimeInMillis();
+		final String app_date_read_at = CommonMethod.getDate(milisecond,
+				CommonVariable.DATABASE_DATE_FORMAT);
+		showKcsDialog();
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+
+				try {
+
+					final Model_WebResponse modelResonse = WebCalls
+							.setDocumentGuidReadActionPerform(app_date_read_at,
+									strGuid, strClaimAuthToken);
+					mHandler.post(new Runnable() {
+
+						@Override
+						public void run() {
+							if (modelResonse.responseCode
+									.equalsIgnoreCase(CommonVariable.RESPONSE_CODE_FAILED)) {
+
+								CommonMethod.showPopupValidation(getActivity(),
+										modelResonse.responseMessage, false);
+							} else {
+								if (!modelSelectedDocumentType.action_prompt
+										.equalsIgnoreCase("")) {
+									openAgreeDocumentIntent();
+								}
+
+							}
+						}
+
+					});
+
+				} catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+
+					CommonMethod.showWebServiceCallErrorDialog(getActivity(),
+							e.getMessage(), false);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+
+					CommonMethod.showWebServiceCallErrorDialog(getActivity(),
+							e.getMessage(), false);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+
+					CommonMethod.showWebServiceCallErrorDialog(getActivity(),
+							e.getMessage(), false);
+				} finally {
+					mHandler.post(new Runnable() {
+						@Override
+						public void run() {
+							dismissKcsDialog();
+							btnBack.setEnabled(true);
+							btnBack.setClickable(true);
+						}
+					});
+				}
+
+			}
+		}).start();
+
 	}
 
 	// Get Document Detail
@@ -417,12 +525,33 @@ public class ViewMyFolderDetail extends BaseContainerFragment implements
 
 		mDocumentFile = new File(strDecode);
 		Uri uri = Uri.parse(mDocumentFile.getAbsolutePath());
-
+		// File Name Put in String
+		/*
+		 * if (mDocumentFile.getAbsolutePath() != null) {
+		 * saveInstnace.putString("FileName", mDocumentFile.getAbsolutePath());
+		 * }
+		 */
 		if (uri != null) {
+			if (getActivity() == null) {
+				return;
+			}
 			new MuPdfReader(getActivity(), layout, txtPageNumber, saveInstnace,
 					uri, mButtonsVisible);
 			btnBack.setEnabled(true);
 			btnBack.setClickable(true);
 		}
+	}
+
+	private void openAgreeDocumentIntent() {
+		// TODO Auto-generated method stub
+
+		ViewAgreeFile ViewAgreeFileFrag = new ViewAgreeFile();
+		Bundle bundle = new Bundle();
+		bundle.putString(CommonVariable.PUT_EXTRA_DOCUMENT_GUID, strGuid);
+		bundle.putString(CommonVariable.PUT_EXTRA_DOCUMENT_FILE_PATH,
+				mDocumentFile.getAbsolutePath());
+		ViewAgreeFileFrag.setArguments(bundle);
+		((BaseContainerFragment) getParentFragment()).replaceFragment(
+				ViewAgreeFileFrag, true);
 	}
 }

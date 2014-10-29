@@ -10,7 +10,11 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.trueclaims.R;
-
+/**
+ * 
+ * @author Kcspl003
+ *
+ */
 public class AdapterWelcome extends PagerAdapter {
 
 	Context context;
@@ -33,9 +37,7 @@ public class AdapterWelcome extends PagerAdapter {
 		View view = inflater.inflate(R.layout.row_welcome_pager, null);
 		ImageView imgView = (ImageView) view
 				.findViewById(R.id.xml_menu_viewpager_bgImage);
-
 		imgView.setImageResource(imageArray[position]);
-
 		((ViewPager) collection).addView(view, 0);
 
 		return view;

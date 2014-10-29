@@ -1,34 +1,31 @@
 package com.example.view;
 
 import java.io.IOException;
-import java.util.Calendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.database.Tbl_LinkToClaim;
+import com.example.implement.ImplementPopupAction;
+import com.example.model.Model_LinkToClaim;
 import com.example.model.Model_WebResponse;
 import com.example.trueclaims.R;
 import com.example.utils.CommonMethod;
@@ -41,9 +38,10 @@ import com.example.utils.WebCalls;
  * @author sanket
  * 
  */
-public class ViewLinkYourClaims extends Activity implements OnClickListener {
+public class ViewLinkYourClaims extends Activity implements OnClickListener,
+		ImplementPopupAction {
 	private EditText edtClaimNumber;
-	private TextView txtClaimDob;
+	private EditText edtClaimDob;
 	private Button btnHeaderLink;
 	ImageView imgBack;
 	String strClaimNumber, strClaimDob;
@@ -58,6 +56,12 @@ public class ViewLinkYourClaims extends Activity implements OnClickListener {
 	String strDay = "";
 	String strMonth = "";
 	String strYear = "";
+	ImplementPopupAction implementPopupAction;
+	String previousActivity;
+	private TextView txtHeader;
+	boolean isForgotPasscode;
+	private TextView txtResetPasscodeHeader;
+	private TextView txtPasscodeDesc;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +72,44 @@ public class ViewLinkYourClaims extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_linkyourclaims);
 		init();
 	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		implementPopupAction = (ImplementPopupAction) ViewLinkYourClaims.this;
+	}
+
+	public static boolean validateJavaDate(String strDate) {
+		/* Check if date is 'null' */
+		if (strDate.trim().equals("")) {
+			return true;
+		}
+		/* Date is not 'null' */
+		else {
+			/*
+			 * Set preferred date format, For example MM-dd-yyyy,
+			 * MM.dd.yyyy,dd.MM.yyyy etc.
+			 */
+			SimpleDateFormat sdfrmt = new SimpleDateFormat("yyyy-MM-dd");
+			sdfrmt.setLenient(false);
+			/* Create Date object */
+			Date javaDate = null;
+			/* parse the string into date form */
+			try {
+				javaDate = sdfrmt.parse(strDate);
+				System.out.println("Date after validation: " + javaDate);
+			}
+			/* Date format is invalid */
+			catch (ParseException e) {
+				System.out.println("The date you provided is in an "
+						+ "invalid date format.");
+				return false;
+			}
+			/* Return 'true' - since date is in valid format */
+			return true;
+		}
+	} // end ValidateJavaDate
 
 	@Override
 	public void onClick(View v) {
@@ -81,24 +123,53 @@ public class ViewLinkYourClaims extends Activity implements OnClickListener {
 			break;
 		case R.id.commonview_btnSubmitLink:
 			strClaimNumber = edtClaimNumber.getText().toString();
-			strClaimDob = txtClaimDob.getText().toString().trim();
-			// Disable -ListivewTesting
-			if (CommonMethod.isRecordExist(Tbl_LinkToClaim.TableName,
-					Tbl_LinkToClaim.CLAIM_NUMBER, strClaimNumber)) {
-				CommonMethod.showPopupValidation(
-						ViewLinkYourClaims.this,
-						getResources().getString(
-								R.string.linkyourclaim_claimexists), false);
+			strClaimDob = edtClaimDob.getText().toString().trim();
+			if (!validateJavaDate(strClaimDob)) {
+				CommonMethod.showPopupValidation(this, getResources()
+						.getString(R.string.linkyourclaim_wrongdate), false);
 				return;
 			}
-			if (!CommonMethod.isInternetAvailable(ViewLinkYourClaims.this)) {
-				CommonMethod.showPopupValidation(
-						ViewLinkYourClaims.this,
-						getResources().getString(
-								R.string.validation_internetoffline), false);
-				return;
+			if (!isForgotPasscode) {
+				// Disable -ListivewTesting
+				if (CommonMethod.isRecordExist(Tbl_LinkToClaim.TableName,
+						Tbl_LinkToClaim.CLAIM_NUMBER, strClaimNumber)) {
+					CommonMethod.showPopupValidation(
+							ViewLinkYourClaims.this,
+							getResources().getString(
+									R.string.linkyourclaim_claimexists), false);
+					return;
+				}
+				if (!CommonMethod.isInternetAvailable(ViewLinkYourClaims.this)) {
+					CommonMethod
+							.showPopupValidation(
+									ViewLinkYourClaims.this,
+									getResources()
+											.getString(
+													R.string.validation_internetoffline),
+									false);
+					return;
+				}
+				WebCallLinkToClaim();
+			} else {
+				if (CommonMethod.isRecordExist(Tbl_LinkToClaim.TableName,
+						Tbl_LinkToClaim.CLAIM_NUMBER, strClaimNumber)) {
+					CommonMethod.setSharePrefrenceBoolean(this,
+							CommonVariable.PREFS_DIALOG_MYFOLDER_ISOPEN, true);
+					CommonMethod.setSharePrefrenceBoolean(this,
+							CommonVariable.PREFS_DIALOG_PASSCODE_SAVE_ALREADY,
+							false);
+					CommonMethod.setSharePrefrenceString(this,
+							CommonVariable.PREFS_FOLDER_PASSWORD, "");
+					CommonMethod.showPopupSuccessDialog(
+							this,
+							getResources().getString(
+									R.string.dialog_passwordreset_header),
+							R.drawable.ic_padlock,
+							getResources().getString(
+									R.string.dialog_passwordreset_desc), true,
+							null);
+				}
 			}
-			WebCallLinkToClaim();
 			break;
 
 		default:
@@ -131,19 +202,31 @@ public class ViewLinkYourClaims extends Activity implements OnClickListener {
 											.getDeviceUniqueID(ViewLinkYourClaims.this));
 					mHandler.post(new Runnable() {
 
+						private String strDialogHeader;
+
 						@Override
 						public void run() {
 							if (modelResponse.responseCode
 									.equalsIgnoreCase(CommonVariable.RESPONSE_CODE_SUCCESS)) {
-								CommonMethod
-										.showPopupValidation(
-												ViewLinkYourClaims.this,
-												CommonVariable.LINKTOCLAIM_SUCCESS_MESSAGE
-														.replace(
-																"CLAIM_NUMBER",
-																strClaimNumber),
-												true);
+								Model_LinkToClaim modelLinkResponse = (Model_LinkToClaim) modelResponse.responseParseObject;
+								if (modelLinkResponse != null) {
+									int dialogIcon = R.drawable.link_popup_icon;
 
+									strDialogHeader = getResources()
+											.getString(
+													R.string.dialogsuccess_strMessageHeader)
+											+ modelLinkResponse.customer_name
+											+ " .";
+									String strMessageDetail = CommonVariable.DIALOG_SUCCESS_MESSAGE_DESC
+
+									.replace("CLAIM_NUMBER",
+											modelLinkResponse.claim_number);
+									CommonMethod.showPopupSuccessDialog(
+											ViewLinkYourClaims.this,
+											strDialogHeader, dialogIcon,
+											strMessageDetail, true,
+											implementPopupAction);
+								}
 							} else {
 								CommonMethod.showPopupValidation(
 										ViewLinkYourClaims.this,
@@ -189,33 +272,50 @@ public class ViewLinkYourClaims extends Activity implements OnClickListener {
 		btnHeaderLink = (Button) findViewById(R.id.commonview_btnSubmitLink);
 		imgBack = (ImageView) findViewById(R.id.commonview_imgback);
 		edtClaimNumber = (EditText) findViewById(R.id.linkyourclaim_edtclaimnumber);
-		txtClaimDob = (TextView) findViewById(R.id.linkyourclaim_txtclaimdob);
+		edtClaimDob = (EditText) findViewById(R.id.linkyourclaim_edtclaimdob);
+		txtResetPasscodeHeader = (TextView) findViewById(R.id.linkyourclaim_txtResetPasscode);
 		edtClaimNumber.addTextChangedListener(new EditTextWatcher(
 				edtClaimNumber));
-
-		Calendar cal = Calendar.getInstance();
-		year = cal.get(Calendar.YEAR);
-		month = cal.get(Calendar.MONTH);
-		day = cal.get(Calendar.DAY_OF_MONTH);
-
-		long milisecond = cal.getTimeInMillis();
-		String strCurrentDate = CommonMethod.getDate(milisecond,
-				CommonVariable.DATABASE_DATE_FORMAT_WITHOUT_TIME);
-		// set current date into textview
-		txtClaimDob.setText(strCurrentDate);
-
-		txtClaimDob.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Log.d("tag", "OnClick Called");
-				datePickerDialog(ViewLinkYourClaims.this);
-			}
-		});
-
+		edtClaimDob.addTextChangedListener(new EditTextWatcher(edtClaimDob));
+		txtHeader = (TextView) findViewById(R.id.commonview_txtHeader);
+		txtPasscodeDesc = (TextView) findViewById(R.id.linkyourclaim_txtClaimText);
+		previousActivity = getIntent().getStringExtra(
+				CommonVariable.PUT_EXTRA_LINK_PREVIOUS_CLASS);
+		implementPopupAction = (ImplementPopupAction) ViewLinkYourClaims.this;
 		imgBack.setOnClickListener(this);
 		btnHeaderLink.setOnClickListener(this);
+		// Checking Previous activity LinkToClaim or Enter Passcode
+		if (previousActivity != null) {
+			if (previousActivity
+					.equalsIgnoreCase(CommonVariable.VALIDATION_PASSCODE_SCREEN)) {
+				txtHeader.setText(getResources().getString(
+						R.string.forgotpasscode_header));
+				isForgotPasscode = true;
+				txtResetPasscodeHeader.setVisibility(View.VISIBLE);
+				txtPasscodeDesc.setText(getResources().getString(
+						R.string.linkyourclaim_resetsecuritydesc));
+				btnHeaderLink.setText(getResources().getString(
+						R.string.passcode_strSubmit ));
+			} else {
+				txtHeader.setText(getResources().getString(
+						R.string.passcode_enterpasscode));
+				isForgotPasscode = false;
+
+				txtResetPasscodeHeader.setVisibility(View.GONE);
+				txtPasscodeDesc.setText(getResources().getString(
+						R.string.linkyourclaim_strAccessClaimDesc));
+				btnHeaderLink.setText(getResources().getString(
+						R.string.linkyourclaim_link));
+			}
+		} else {
+
+			isForgotPasscode = false;
+			txtHeader.setText(getResources().getString(
+					R.string.passcode_enterpasscode));
+			txtResetPasscodeHeader.setVisibility(View.GONE);
+			txtPasscodeDesc.setText(getResources().getString(
+					R.string.linkyourclaim_strAccessClaimDesc));
+		}
 	}
 
 	private class EditTextWatcher implements TextWatcher {
@@ -243,7 +343,17 @@ public class ViewLinkYourClaims extends Activity implements OnClickListener {
 				} else {
 					checkLinkButtonValidation();
 				}
+			} else if (mEditText == edtClaimDob) {
+				if (s.toString().trim().length() <= 0) {
+					btnHeaderLink.setVisibility(View.GONE);
+					edtClaimDob.setHintTextColor(getResources().getColor(
+							R.color.theme_color));
+				} else {
+					checkLinkButtonValidation();
+				}
+
 			}
+
 		}
 
 	}
@@ -254,7 +364,7 @@ public class ViewLinkYourClaims extends Activity implements OnClickListener {
 	 */
 	private void checkLinkButtonValidation() {
 		strClaimNumber = edtClaimNumber.getText().toString().trim();
-		strClaimDob = txtClaimDob.getText().toString().trim();
+		strClaimDob = edtClaimDob.getText().toString().trim();
 		if (strClaimNumber != null && strClaimDob != null
 				&& strClaimNumber.length() > 0 && strClaimDob.length() > 0) {
 			btnHeaderLink.setVisibility(View.VISIBLE);
@@ -280,65 +390,16 @@ public class ViewLinkYourClaims extends Activity implements OnClickListener {
 			kcsDialog.dismiss();
 	}
 
-	public void datePickerDialog(Activity activity) {
+	/**
+	 * Handling Success Popup Ok Button If extra Action perform require
+	 * 
+	 * @param activity
+	 * @param dialog
+	 * @param btnOk
+	 */
+	@Override
+	public void onOkClickHandler(Activity activity, Dialog dialog, Button btnOk) {
 
-		final Dialog dialog = new Dialog(activity);
-		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,
-				ViewGroup.LayoutParams.MATCH_PARENT);
-		dialog.getWindow().setGravity(Gravity.CENTER);
-		dialog.getWindow().setBackgroundDrawable(
-				new ColorDrawable(Color.TRANSPARENT));
-		dialog.setContentView(R.layout.row_datepicker_dialog);
-		dialog.setCanceledOnTouchOutside(false);
-		dialog.setCancelable(false);
-		datePickerDob = (DatePicker) dialog
-				.findViewById(R.id.linkyourclaim_datepickerdob);
-		TextView btnDone = (TextView) dialog
-				.findViewById(R.id.dialog_spinner_txtDone);
-		TextView btnCancel = (TextView) dialog
-				.findViewById(R.id.dialog_spinner_txtCancel);
-
-		// set selected date into datepicker also
-		datePickerDob.init(year, month, day, new OnDateChangedListener() {
-
-			@Override
-			public void onDateChanged(DatePicker view, int selectedYear,
-					int selectedMonth, int selectedDay) {
-				// TODO Auto-generated method stub
-				year = selectedYear;
-				month = selectedMonth;
-				day = selectedDay;
-				strYear = year + "";
-				strMonth = month <= 8 ? "0" + (month + 1) : String
-						.valueOf(month + 1);
-				strDay = checkDigit(day);
-			}
-		});
-
-		btnDone.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-				txtClaimDob.setText(new StringBuilder().append(year)
-						.append("-").append(strMonth).append("-")
-						.append(strDay));
-				checkLinkButtonValidation();
-				dialog.dismiss();
-			}
-		});
-		btnCancel.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				dialog.dismiss();
-			}
-		});
-		dialog.show();
 	}
 
-	public String checkDigit(int number) {
-		return number <= 9 ? "0" + number : String.valueOf(number);
-	}
 }

@@ -11,17 +11,11 @@
         layout="@layout/common_header" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/linkyourclaim_linearContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/include1"
+        android:layout_below="@+id/seprator1"
         android:orientation="vertical" >
 
         <RelativeLayout
@@ -35,15 +29,31 @@
             android:orientation="vertical" >
 
             <TextView
+                android:id="@+id/linkyourclaim_txtResetPasscode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:gravity="center"
+                android:paddingBottom="@dimen/margin_10dp"
+                android:paddingTop="@dimen/margin_10dp"
+                android:text="@string/linkyourclaim_resetsecurity"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/font_16dp"
+                android:textStyle="bold"
+                android:visibility="invisible" />
+
+            <TextView
                 android:id="@+id/linkyourclaim_txtClaimText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/linkyourclaim_txtResetPasscode"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:gravity="center"
                 android:text="@string/linkyourclaim_strAccessClaimDesc"
                 android:textColor="@color/color_black"
-                android:textSize="@dimen/font_20dp" />
+                android:textSize="@dimen/font_16dp" />
         </RelativeLayout>
 
         <LinearLayout
@@ -93,20 +103,29 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/date_birth_icon" />
 
-                <TextView
-                    android:id="@+id/linkyourclaim_txtclaimdob"
+                <EditText
+                    android:id="@+id/linkyourclaim_edtclaimdob"
                     style="@style/EditTextTheme"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/margin_20dp"
                     android:ellipsize="end"
+                    android:inputType="date"
                     android:gravity="center|left"
-                    android:padding="@dimen/margin_5dp" android:focusable="false"
+                    android:hint="@string/linkyourclaim_hintclaimdob"
+                    android:padding="@dimen/margin_5dp"
                     android:singleLine="true"
-                    android:text="@string/linkyourclaim_hintclaimdob"
                     android:textSize="@dimen/font_16dp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
+    <View
+        android:id="@+id/seprator1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_1dp"
+        android:layout_below="@+id/include1"
+        android:background="@color/color_greyseprator"
+        android:orientation="vertical" />
 
 </RelativeLayout>

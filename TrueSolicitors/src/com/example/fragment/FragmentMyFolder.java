@@ -13,10 +13,13 @@ import android.view.ViewGroup;
 
 import com.example.trueclaims.R;
 import com.example.view.ViewMyFolder;
-/** Container Folder Fragment
- * Folder Tab-Getting List Of Document Related ClaimNumber
+
+/**
+ * Container Folder Fragment Folder Tab-Getting List Of Document Related
+ * ClaimNumber
+ * 
  * @author Kcspl003
- *
+ * 
  */
 public class FragmentMyFolder extends BaseContainerFragment {
 
@@ -87,6 +90,9 @@ public class FragmentMyFolder extends BaseContainerFragment {
 			if (viewMyFolderFrag != null) {
 				viewMyFolderFrag.refreshListViewData();
 			}
+		} else {
+			((ViewMainFragment) getActivity()).actionbar
+					.setSelectedNavigationItem(0);
 		}
 	}
 

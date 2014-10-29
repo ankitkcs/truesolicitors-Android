@@ -69,6 +69,7 @@ public class WebCalls {
 
 			return modelWs;
 		}
+
 		// LinkToClaim object get
 		JSONObject jsonObjLinkToClaim = jObject
 				.getJSONObject(CommonVariable.RESPONSE_LINKTOCLAIM_ARRAYNAME);
@@ -91,7 +92,7 @@ public class WebCalls {
 		long milisecond = cal.getTimeInMillis();
 		modelLinkToClaim.record_created_at = CommonMethod.getDate(milisecond,
 				CommonVariable.DATABASE_DATE_FORMAT);
-
+		modelWs.responseParseObject = modelLinkToClaim;
 		Tbl_LinkToClaim.Insert(modelLinkToClaim);
 		return modelWs;
 	}
@@ -287,7 +288,8 @@ public class WebCalls {
 			}
 			Tbl_Documents.Insert(listDocuments);
 		}
-
+		// Calling Document Type guid Webservice call
+		getDocumentType(cliam_auth_token);
 		return modelWs;
 	}
 
@@ -324,7 +326,7 @@ public class WebCalls {
 
 			return modelWs;
 		}
-		
+
 		JSONObject jsonModelObject = jObject
 				.getJSONObject(CommonVariable.RESPONSE_GET_DOCUMENTSDETAIL_ARRAYNAME);
 		String bodyBase64 = jsonModelObject.getString("body");
@@ -343,22 +345,28 @@ public class WebCalls {
 	 *             The action a user has performed 0=do not agree 1=agree
 	 */
 	public static Model_WebResponse setDocumentGuidAction(
-			String strAppReadTime, String strAppActionTime,
-			String appTypeAction, String documentGUID, String auth_token)
-			throws ClientProtocolException, IOException, JSONException {
+			String strAppActionTime, String appTypeAction, String documentGUID,
+			String strIncludeMessage, String auth_token,
+			boolean isIncludeMessage) throws ClientProtocolException,
+			IOException, JSONException {
 		String WebUrl = CommonVariable.API_POST_DOCUMENT_ACTION
 				+ File.separator + documentGUID;
 		Log.d("tag", "Document Guid" + documentGUID);
 		Log.d("tag", "auth token" + auth_token);
-		Log.d("tag", "app_date_read_at " + strAppReadTime);
+
 		Log.d("tag", "app_date_actioned_at " + strAppActionTime);
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("app_date_read_at",
-				strAppReadTime));
+
 		nameValuePairs.add(new BasicNameValuePair("app_date_actioned_at",
 				strAppActionTime));
 		nameValuePairs.add(new BasicNameValuePair("app_type_of_action",
 				appTypeAction));
+
+		if (isIncludeMessage) {
+			nameValuePairs.add(new BasicNameValuePair("optional_message",
+					strIncludeMessage));
+
+		}
 		String response = HttpClient.SendHttpPUT(WebUrl, auth_token,
 				nameValuePairs);
 		JSONObject jObject = new JSONObject(response);
@@ -374,7 +382,62 @@ public class WebCalls {
 
 			return modelWs;
 		}
-	
+
+		JSONObject jsonActionObj = jObject
+				.getJSONObject(CommonVariable.RESPONSE_GET_DOCUMENTSACTION_ARRAYNAME);
+		Model_Documents modelDoc = Tbl_Documents.selectDocument(documentGUID);
+
+		modelDoc.name = jsonActionObj.getString("name");
+		modelDoc.app_date_read_at = jsonActionObj.getString("app_date_read_at");
+		modelDoc.app_date_actioned_at = jsonActionObj
+				.getString("app_date_actioned_at");
+		modelDoc.type_code = jsonActionObj.getString("type_code");
+		modelDoc.created_at = jsonActionObj.getString("created_at");
+		modelDoc.action_performed = jsonActionObj.getString("action_performed");
+		Tbl_Documents.updateDocument(modelDoc);
+
+		return modelWs;
+	}
+
+	/**
+	 * setDocumentGuidReadActionPerform
+	 * 
+	 * @param strBodyPart
+	 * @param auth_token
+	 * @return
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 * @throws JSONException
+	 * 
+	 */
+	public static Model_WebResponse setDocumentGuidReadActionPerform(
+			String strAppReadTime, String documentGUID, String auth_token)
+			throws ClientProtocolException, IOException, JSONException {
+		String WebUrl = CommonVariable.API_POST_DOCUMENT_ACTION
+				+ File.separator + documentGUID;
+		Log.d("tag", "Document Guid" + documentGUID);
+		Log.d("tag", "auth token" + auth_token);
+		Log.d("tag", "app_date_read_at " + strAppReadTime);
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("app_date_read_at",
+				strAppReadTime));
+
+		String response = HttpClient.SendHttpPUT(WebUrl, auth_token,
+				nameValuePairs);
+		JSONObject jObject = new JSONObject(response);
+		Model_WebResponse modelWs = new Model_WebResponse();
+		modelWs.responseCode = jObject.getString(CommonVariable.RESPONSE_CODE);
+		Log.d("tag", "modelWs.responseCode " + modelWs.responseCode);
+		modelWs.responseMessage = jObject
+				.getString(CommonVariable.RESPONSE_MESSAGE);
+		Log.d("tag", "modelWs.responseMessage " + modelWs.responseMessage);
+
+		if (modelWs.responseCode
+				.equalsIgnoreCase(CommonVariable.RESPONSE_CODE_FAILED)) {
+
+			return modelWs;
+		}
+
 		JSONObject jsonActionObj = jObject
 				.getJSONObject(CommonVariable.RESPONSE_GET_DOCUMENTSACTION_ARRAYNAME);
 		Model_Documents modelDoc = Tbl_Documents.selectDocument(documentGUID);

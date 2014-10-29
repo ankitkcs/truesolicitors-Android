@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_15dp"
+    android:background="@drawable/rounded_corner_white"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/xml_popupsend_txtMessage"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="left|top"
+        android:minLines="5"
+        android:maxLines="5"
+        android:background="@null"
+        android:cursorVisible="true"
+        android:paddingLeft="@dimen/margin_10dp"
+        android:paddingRight="@dimen/margin_5dp"
+        android:paddingTop="@dimen/margin_10dp"             style="@style/EditTextThemeWhiteEdit"
+        android:text=""
+        android:textColor="@color/gray_light"
+        android:textSize="@dimen/font_20dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_light2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/xml_popupsend_relOk"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <Button
+                android:id="@+id/xml_popupsend_btnOk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingBottom="@dimen/margin_8dp"
+                android:paddingTop="@dimen/margin_8dp"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/yesicn"
+                android:text="@string/agreefile_strMessageSend"
+                android:drawablePadding="@dimen/margin_5dp"
+                android:textColor="@color/gray_dark"
+                android:textSize="@dimen/font_20dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/grey_light2" />
+
+        <RelativeLayout
+            android:id="@+id/xml_popupsend_relCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <Button
+                android:id="@+id/xml_popupsend_btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingBottom="@dimen/margin_8dp"
+                android:drawablePadding="@dimen/margin_5dp"
+                android:paddingTop="@dimen/margin_8dp"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/closeicn"
+                android:text="@string/agreefile_strMessageCancel"
+                android:textColor="@color/gray_dark"
+                android:textSize="@dimen/font_20dp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

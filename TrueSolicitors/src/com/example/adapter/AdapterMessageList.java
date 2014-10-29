@@ -82,10 +82,9 @@ public class AdapterMessageList extends BaseAdapter implements Filterable {
 		}
 		Model_Messages model = filteredData.get(position);
 		if (!model.is_to_firm.equalsIgnoreCase("true")) {
-			holder.imgIcon
-					.setImageResource(R.drawable.android_true_messages_icon);
+			holder.imgIcon.setImageResource(R.drawable.ic_true_messages);
 		} else {
-			holder.imgIcon.setImageResource(R.drawable.android_user_icon);
+			holder.imgIcon.setImageResource(R.drawable.ic_user_messages);
 		}
 		try {
 			holder.txtDate
